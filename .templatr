@@ -1,0 +1,13 @@
+{
+  "name": "Quest Mod Template",
+  "author": "Lauriethefish",
+  "src": "./template",
+  "description": "Template for creating QuestPatcher/BMBF mods for the Oculus Quest.",
+  "placeholders": [
+    {"match": "C:/Program Files/Qmod/Android", "prompt": "The path to the android NDK", "cachable": true},
+    {"match": "QolourSwitcher", "prompt": "The ID of the mod"},
+    {"match": "Qolour Switcher", "prompt": "The name of the mod"},
+    {"match": "Nuggo#9535", "prompt": "The author of the mod"},
+    {"match": "Allows user to change colours mid-game!", "prompt": "The description of the mod"}
+  ]
+}
