@@ -31,14 +31,21 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 
     if (!getModConfig().ModToggle.GetValue())
     {
-        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, -0.3f, 2.6f), Vector3(25.0f, 0.0f, 0.0f), 0.0f, false, false);
-        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, -0.3f, 2.6f), Vector3(25.0f, 0.0f, 0.0f), 0.0f, false, false);
+        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, -0.2f, 2.6f), Vector3(30.0f, 0.0f, 0.0f), 0.0f, false, false);
+        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, -0.2f, 2.6f), Vector3(30.0f, 0.0f, 0.0f), 0.0f, false, false);
+
+
+
+        BeatSaberUI::CreateText(leftSaberScreen->get_transform(), "Left Saber Colour!", Vector2(17.5f, 0.0f));
 
         BeatSaberUI::CreateColorPicker(leftSaberScreen->get_transform(), "", colourScheme->get_saberAColor(), [colourScheme](Color colour)
         {
             getLogger().info("Saving left saber colour!");
             colourScheme->saberAColor = colour;
         });
+
+
+        BeatSaberUI::CreateText(rightSaberScreen->get_transform(), "Right Saber Colour!", Vector2(15.0f, 0.0f));
 
         BeatSaberUI::CreateColorPicker(rightSaberScreen->get_transform(), "", colourScheme->get_saberBColor(), [colourScheme](Color colour)
         {
@@ -72,17 +79,3 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ContinueButtonPressed, &PauseMenuManager::
     }
     else if (getModConfig().ModToggle.GetValue()) {}
 }
-
-
-//MAKE_AUTO_HOOK_MATCH(PauseMenuManager_MenuButtonPressed, &PauseMenuManager::MenuButtonPressed, void, PauseMenuManager *self) {
-//    PauseMenuManager_MenuButtonPressed(self);
-//
-//        leftSaberScreen->SetActive(false);
-//        rightSaberScreen->SetActive(false);
-//}
-//
-//MAKE_AUTO_HOOK_MATCH(PauseMenuManager_RestartButtonPressed, &PauseMenuManager::RestartButtonPressed, void, PauseMenuManager *self) {
-//    PauseMenuManager_RestartButtonPressed(self);
-//        leftSaberScreen->SetActive(false);
-//        rightSaberScreen->SetActive(false);
-//}
