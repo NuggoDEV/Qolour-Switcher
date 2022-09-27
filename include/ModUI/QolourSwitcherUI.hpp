@@ -9,6 +9,7 @@
 DECLARE_CLASS_CODEGEN(QolourSwitcher, QolourSwitcherUI, HMUI::ViewController,
 
     DECLARE_OVERRIDE_METHOD(void, DidActivate, GET_FIND_METHOD(&ViewController::DidActivate), bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling);
+    DECLARE_OVERRIDE_METHOD(void, DidDeactivate, GET_FIND_METHOD(&ViewController::DidDeactivate), bool removedFromHierarchy, bool screenSystemDisabling);
     
 
 )
