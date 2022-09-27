@@ -22,6 +22,7 @@ DEFINE_TYPE(QolourSwitcher, QolourSwitcherUI);
 
 
 GameObject *leftScreen;
+GameObject *centreScreen;
 bool screenOn = false;
 
 void QolourSwitcher::QolourSwitcherUI::DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling)
@@ -33,8 +34,8 @@ void QolourSwitcher::QolourSwitcherUI::DidActivate(bool firstActivation, bool ad
 
    if (firstActivation)
    {
-      GameObject *centreScreen = BeatSaberUI::CreateScrollView(get_transform());
-      leftScreen = QuestUI::BeatSaberUI::CreateFloatingScreen(Vector2(60.0f, 70.0f), Vector3(-2.3f, 1.0f, 3.1f), Vector3(0.0f, -35.0f, 0.0f), 0.0f, true, false);
+      centreScreen = BeatSaberUI::CreateScrollView(get_transform());
+      leftScreen = QuestUI::BeatSaberUI::CreateFloatingScreen(Vector2(60.0f, 70.0f), Vector3(-2.6f, 1.0f, 3.1f), Vector3(0.0f, -40.0f, 0.0f), 0.0f, true, false);
 
       // Mod Toggle Switch
       BeatSaberUI::CreateToggle(leftScreen->get_transform(), "Disable Qolour Switcher", getModConfig().ModToggle.GetValue(), Vector2(0.0f, -5.0f), [](bool value)
@@ -60,6 +61,7 @@ void QolourSwitcher::QolourSwitcherUI::DidActivate(bool firstActivation, bool ad
    {
       screenOn = true;
       leftScreen->SetActive(true);
+      centreScreen->SetActive(true);
    }
 
 
@@ -69,4 +71,5 @@ void QolourSwitcher::QolourSwitcherUI::DidDeactivate(bool removedFromHierarchy, 
 {
    screenOn = false;
    leftScreen->SetActive(false);
+   centreScreen->SetActive(false);
 }
