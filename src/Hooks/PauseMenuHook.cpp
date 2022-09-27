@@ -31,8 +31,8 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 
     if (!getModConfig().ModToggle.GetValue())
     {
-        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, -0.5f, 1.0f), Vector3(-35.0f, 0.0f, 0.0f), 0.0f, false, false);
-        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, -0.5f, 1.0f), Vector3(-35.0f, 0.0f, 0.0f), 0.0f, false, false);
+        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, -0.3f, 2.6f), Vector3(25.0f, 0.0f, 0.0f), 0.0f, false, false);
+        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, -0.3f, 2.6f), Vector3(25.0f, 0.0f, 0.0f), 0.0f, false, false);
 
         BeatSaberUI::CreateColorPicker(leftSaberScreen->get_transform(), "", colourScheme->get_saberAColor(), [colourScheme](Color colour)
         {
@@ -48,10 +48,39 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 
         screensEnabled = true;
     }
-    else if (getModConfig().ModToggle.GetValue())
+    else if (getModConfig().ModToggle.GetValue() == true)
     {
         getLogger().info("Not loading Colour Pickers.");
         leftSaberScreen->SetActive(false);
         rightSaberScreen->SetActive(false);
     }
+
+    if (!screensEnabled)
+    {
+        getLogger().info("Setting pickers to active");
+        leftSaberScreen->SetActive(true);
+        rightSaberScreen->SetActive(true);
+    }
+}
+
+
+MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ContinueButtonPressed, &PauseMenuManager::ContinueButtonPressed, void, PauseMenuManager *self) {
+    PauseMenuManager_ContinueButtonPressed(self);
+    getLogger().info("Disabling Colour Picker!");
+    leftSaberScreen->SetActive(false);
+    rightSaberScreen->SetActive(false);
+
+    screensEnabled = false;
+}
+
+MAKE_AUTO_HOOK_MATCH(PauseMenuManager_MenuButtonPressed, &PauseMenuManager::MenuButtonPressed, void, PauseMenuManager *self) {
+    PauseMenuManager_MenuButtonPressed(self);
+    leftSaberScreen->SetActive(false);
+    rightSaberScreen->SetActive(false);
+}
+
+MAKE_AUTO_HOOK_MATCH(PauseMenuManager_RestartButtonPressed, &PauseMenuManager::RestartButtonPressed, void, PauseMenuManager *self) {
+    PauseMenuManager_RestartButtonPressed(self);
+    leftSaberScreen->SetActive(false);
+    rightSaberScreen->SetActive(false);
 }
