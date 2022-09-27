@@ -48,7 +48,7 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 
         screensEnabled = true;
     }
-    else if (getModConfig().ModToggle.GetValue() == true)
+    else if (getModConfig().ModToggle.GetValue())
     {
         getLogger().info("Not loading Colour Pickers.");
         leftSaberScreen->SetActive(false);
