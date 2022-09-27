@@ -48,12 +48,7 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 
         screensEnabled = true;
     }
-    else if (getModConfig().ModToggle.GetValue())
-    {
-        getLogger().info("Not loading Colour Pickers.");
-        leftSaberScreen->SetActive(false);
-        rightSaberScreen->SetActive(false);
-    }
+    else if (getModConfig().ModToggle.GetValue()) {}
 
     if (!screensEnabled)
     {
@@ -66,21 +61,28 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 
 MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ContinueButtonPressed, &PauseMenuManager::ContinueButtonPressed, void, PauseMenuManager *self) {
     PauseMenuManager_ContinueButtonPressed(self);
+    
+    if (!getModConfig().ModToggle.GetValue())
+    {
     getLogger().info("Disabling Colour Picker!");
     leftSaberScreen->SetActive(false);
     rightSaberScreen->SetActive(false);
-
+    
     screensEnabled = false;
+    }
+    else if (getModConfig().ModToggle.GetValue()) {}
 }
 
-MAKE_AUTO_HOOK_MATCH(PauseMenuManager_MenuButtonPressed, &PauseMenuManager::MenuButtonPressed, void, PauseMenuManager *self) {
-    PauseMenuManager_MenuButtonPressed(self);
-    leftSaberScreen->SetActive(false);
-    rightSaberScreen->SetActive(false);
-}
 
-MAKE_AUTO_HOOK_MATCH(PauseMenuManager_RestartButtonPressed, &PauseMenuManager::RestartButtonPressed, void, PauseMenuManager *self) {
-    PauseMenuManager_RestartButtonPressed(self);
-    leftSaberScreen->SetActive(false);
-    rightSaberScreen->SetActive(false);
-}
+//MAKE_AUTO_HOOK_MATCH(PauseMenuManager_MenuButtonPressed, &PauseMenuManager::MenuButtonPressed, void, PauseMenuManager *self) {
+//    PauseMenuManager_MenuButtonPressed(self);
+//
+//        leftSaberScreen->SetActive(false);
+//        rightSaberScreen->SetActive(false);
+//}
+//
+//MAKE_AUTO_HOOK_MATCH(PauseMenuManager_RestartButtonPressed, &PauseMenuManager::RestartButtonPressed, void, PauseMenuManager *self) {
+//    PauseMenuManager_RestartButtonPressed(self);
+//        leftSaberScreen->SetActive(false);
+//        rightSaberScreen->SetActive(false);
+//}
