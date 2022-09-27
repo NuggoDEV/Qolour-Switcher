@@ -39,13 +39,15 @@ extern "C" void setup(ModInfo& info) {
 extern "C" void load() {
     il2cpp_functions::Init();
 
+    getLogger().info("Loading Qolour Switcher UI & Config");
     getModConfig().Init(modInfo);
     QuestUI::Init();
     QuestUI::Register::RegisterMainMenuModSettingsViewController<QolourSwitcher::QolourSwitcherUI *>(modInfo, "Qolour Switcher");
+    getLogger().info("Successfully loaded Qolour Switcher UI & Config!");
 
-    getLogger().info("Installing hooks...");
+    getLogger().info("Installing Qolour Switcher Hooks");
     auto &logger = getLogger();
     QolourSwitcherHooks::InstallHooks(logger);
 
-    getLogger().info("Installed all hooks!");
+    getLogger().info("Installed Qolour Switcher Hooks!");
 }
