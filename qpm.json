@@ -40,6 +40,11 @@
       "id": "custom-types",
       "versionRange": "=0.15.18",
       "additionalData": {}
+    },
+    {
+      "id": "chroma",
+      "versionRange": "^2.6.4",
+      "additionalData": {}
     }
   ],
   "additionalData": {}

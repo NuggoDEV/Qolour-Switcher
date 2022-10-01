@@ -8,6 +8,9 @@ using namespace QolourSwitcher;
 #include "questui/shared/QuestUI.hpp"
 using namespace QuestUI;
 
+#include "chroma/shared/CoreAPI.hpp"
+using namespace Chroma;
+
 DEFINE_CONFIG(ModConfig);
 
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
@@ -46,8 +49,11 @@ extern "C" void load() {
     getLogger().info("Successfully loaded Qolour Switcher UI & Config!");
 
     getLogger().info("Installing Qolour Switcher Hooks");
+
     auto &logger = getLogger();
     QolourSwitcherHooks::InstallHooks(logger);
+
+    CoreAPI::addForceEnableChromaHooks(modInfo);
 
     getLogger().info("Installed Qolour Switcher Hooks!");
 }

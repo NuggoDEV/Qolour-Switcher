@@ -16,11 +16,13 @@ using namespace UnityEngine;
 #include "questui/shared/QuestUI.hpp"
 using namespace QuestUI;
 
+
+
 GameObject *leftSaberScreen;
 GameObject *rightSaberScreen;
 bool screensEnabled;
 
-MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, void, GlobalNamespace::PauseMenuManager *self)
+MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, void, PauseMenuManager *self)
 {
     PauseMenuManager_ShowMenu(self);
 
@@ -31,8 +33,9 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 
     if (!getModConfig().ModToggle.GetValue())
     {
-        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, -0.2f, 2.6f), Vector3(30.0f, 0.0f, 0.0f), 0.0f, false, false);
-        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, -0.2f, 2.6f), Vector3(30.0f, 0.0f, 0.0f), 0.0f, false, false);
+        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, 2.2f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
+        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, 2.2f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
+
 
 
 
