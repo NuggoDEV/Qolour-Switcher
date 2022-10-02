@@ -2,11 +2,17 @@
 #include "QolourSwitcherConfig.hpp"
 #include "QolourSwitcherHooks.hpp"
 
+#include "chroma/shared/SaberAPI.hpp"
+#include "chroma/shared/NoteAPI.hpp"
+using namespace Chroma;
+
 #include "GlobalNamespace/PlayerDataModel.hpp"
 #include "GlobalNamespace/PlayerData.hpp"
 #include "GlobalNamespace/ColorScheme.hpp"
 #include "GlobalNamespace/ColorSchemesSettings.hpp"
+#include "GlobalNamespace/SaberType.hpp"
 
+#include "GlobalNamespace/BeatEffectSpawner.hpp"
 #include "GlobalNamespace/PauseMenuManager.hpp"
 using namespace GlobalNamespace;
 
@@ -33,10 +39,8 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 
     if (!getModConfig().ModToggle.GetValue())
     {
-        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, 2.2f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
-        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, 2.2f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
-
-
+        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
+        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
 
 
         BeatSaberUI::CreateText(leftSaberScreen->get_transform(), "Left Saber Colour!", Vector2(17.5f, 0.0f));
@@ -45,6 +49,7 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
         {
             getLogger().info("Saving left saber colour!");
             colourScheme->saberAColor = colour;
+            getModConfig().ColoursChanged.SetValue(true);
         });
 
 
@@ -54,6 +59,7 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
         {
             getLogger().info("Saving right saber colour");
             colourScheme->saberBColor = colour;
+            getModConfig().ColoursChanged.SetValue(true);
         });
 
         screensEnabled = true;
