@@ -44,8 +44,8 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
         leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
         rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);       
 
-        bombScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, 3.2f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
-        wallScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, 3.2f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
+        bombScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, 3.2f, 2.35f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
+        wallScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, 3.2f, 2.35f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
 
 
         BeatSaberUI::CreateText(leftSaberScreen->get_transform(), "Left Saber Colour!", Vector2(17.5f, 0.0f));
@@ -71,16 +71,21 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
         {
             BeatSaberUI::CreateText(bombScreen->get_transform(), "Bomb Colour!", Vector2(20.0f, 0.0f));
 
-            BeatSaberUI::CreateColorPicker(bombScreen->get_transform(), "", getModConfig().BombColour.GetValue(), [colourScheme](Color colour)
+            BeatSaberUI::CreateColorPicker(bombScreen->get_transform(), "", getModConfig().BombColour.GetValue(), [&](Color colour)
             {
                 getLogger().info("Saving Bomb Colour!");
                 getModConfig().BombColour.SetValue(colour);
+                getModConfig().ColoursChanged.SetValue(true);
             });
+
+
+            BeatSaberUI::CreateText(wallScreen->get_transform(), "Wall Colour!", Vector2(20.0f, 0.0f));
 
             BeatSaberUI::CreateColorPicker(wallScreen->get_transform(), "", colourScheme->get_obstaclesColor(), [colourScheme](Color colour)
             {
                 getLogger().info("Saving Wall Colour!");
                 colourScheme->obstaclesColor = colour;
+                getModConfig().ColoursChanged.SetValue(true);
             });
         }
 
