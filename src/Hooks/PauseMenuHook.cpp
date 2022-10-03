@@ -41,14 +41,13 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 
     if (!getModConfig().ModToggle.GetValue())
     {
-        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
-        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);       
+        leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(-0.4f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
+        rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(0.4f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);       
+        bombScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(-1.2f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
+        wallScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(1.2f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
 
-        bombScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(-0.5f, 3.2f, 2.35f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
-        wallScreen = BeatSaberUI::CreateFloatingScreen(Vector2(10.0f, 10.0f), Vector3(0.5f, 3.2f, 2.35f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
 
-
-        BeatSaberUI::CreateText(leftSaberScreen->get_transform(), "Left Saber Colour!", Vector2(17.5f, 0.0f));
+        BeatSaberUI::CreateText(leftSaberScreen->get_transform(), "Left Saber Colour!", Vector2(13.5f, -5.0f));
 
         BeatSaberUI::CreateColorPicker(leftSaberScreen->get_transform(), "", colourScheme->get_saberAColor(), [colourScheme](Color colour)
         {
@@ -58,7 +57,7 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
         });
 
 
-        BeatSaberUI::CreateText(rightSaberScreen->get_transform(), "Right Saber Colour!", Vector2(15.0f, 0.0f));
+        BeatSaberUI::CreateText(rightSaberScreen->get_transform(), "Right Saber Colour!", Vector2(12.5f, -5.0f));
 
         BeatSaberUI::CreateColorPicker(rightSaberScreen->get_transform(), "", colourScheme->get_saberBColor(), [colourScheme](Color colour)
         {
@@ -66,28 +65,27 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
             colourScheme->saberBColor = colour;
             getModConfig().ColoursChanged.SetValue(true);
         });
+    
+        
+        BeatSaberUI::CreateText(bombScreen->get_transform(), "Bomb Colour!", Vector2(16.0f, -5.0f));
 
-        if (getModConfig().ExtraToggle.GetValue())
+        BeatSaberUI::CreateColorPicker(bombScreen->get_transform(), "", getModConfig().BombColour.GetValue(), [&](Color colour)
         {
-            BeatSaberUI::CreateText(bombScreen->get_transform(), "Bomb Colour!", Vector2(20.0f, 0.0f));
-
-            BeatSaberUI::CreateColorPicker(bombScreen->get_transform(), "", getModConfig().BombColour.GetValue(), [&](Color colour)
-            {
-                getLogger().info("Saving Bomb Colour!");
-                getModConfig().BombColour.SetValue(colour);
-                getModConfig().ColoursChanged.SetValue(true);
-            });
+            getLogger().info("Saving Bomb Colour!");
+            getModConfig().BombColour.SetValue(colour);
+            getModConfig().ColoursChanged.SetValue(true);
+        });
 
 
-            BeatSaberUI::CreateText(wallScreen->get_transform(), "Wall Colour!", Vector2(20.0f, 0.0f));
+        BeatSaberUI::CreateText(wallScreen->get_transform(), "Wall Colour!", Vector2(16.0f, -5.0f));
 
-            BeatSaberUI::CreateColorPicker(wallScreen->get_transform(), "", colourScheme->get_obstaclesColor(), [colourScheme](Color colour)
-            {
-                getLogger().info("Saving Wall Colour!");
-                colourScheme->obstaclesColor = colour;
-                getModConfig().ColoursChanged.SetValue(true);
-            });
-        }
+        BeatSaberUI::CreateColorPicker(wallScreen->get_transform(), "", colourScheme->get_obstaclesColor(), [colourScheme](Color colour)
+        {
+            getLogger().info("Saving Wall Colour!");
+            colourScheme->obstaclesColor = colour;
+            getModConfig().ColoursChanged.SetValue(true);
+        });
+        
 
         screensEnabled = true;
     }
@@ -98,6 +96,8 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
         getLogger().info("Setting pickers to active");
         leftSaberScreen->SetActive(true);
         rightSaberScreen->SetActive(true);
+        bombScreen->SetActive(true);
+        wallScreen->SetActive(true);
     }
 }
 
@@ -107,11 +107,12 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ContinueButtonPressed, &PauseMenuManager::
     
     if (!getModConfig().ModToggle.GetValue())
     {
-    getLogger().info("Disabling Colour Picker!");
-    leftSaberScreen->SetActive(false);
-    rightSaberScreen->SetActive(false);
+        getLogger().info("Setting pickers to inactive!");
+        leftSaberScreen->SetActive(false);
+        rightSaberScreen->SetActive(false);
+        bombScreen->SetActive(false);
+        wallScreen->SetActive(false);
     
-    screensEnabled = false;
+        screensEnabled = false;
     }
-    else if (getModConfig().ModToggle.GetValue()) {}
 }

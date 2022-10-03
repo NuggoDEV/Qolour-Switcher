@@ -44,12 +44,9 @@ MAKE_AUTO_HOOK_MATCH(BeatEffectSpawner_Update, &BeatEffectSpawner::Update, void,
         if (getModConfig().ColoursChanged.GetValue())
         {
             NoteAPI::setGlobalNoteColorSafe(std::make_optional(colourA), std::make_optional(colourB));
-
-            if (getModConfig().ExtraToggle.GetValue())
-            {
-                BombAPI::setGlobalBombColorSafe(bombColour);
-                ObstacleAPI::setAllObstacleColorSafe(wallColour);
-            }
+            BombAPI::setGlobalBombColorSafe(bombColour);
+            ObstacleAPI::setAllObstacleColorSafe(wallColour);
+            
             getModConfig().ColoursChanged.SetValue(false);
         }
 
@@ -72,9 +69,9 @@ MAKE_AUTO_HOOK_MATCH(a, &AudioTimeSyncController::Awake, void, AudioTimeSyncCont
     a(self);
 
     auto SongTimeModel = Object::FindObjectOfType<AudioTimeSyncController *>();
-    auto SongTime = SongTimeModel->songTime;
+    float SongTime = SongTimeModel->songTime;
 
-    if (SongTime == 10)
+    if (SongTime == 10.0f)
     {
         NoteAPI::setGlobalNoteColorSafe(Color(1, 0, 0, 1), Color(0, 1, 0, 1));
     }

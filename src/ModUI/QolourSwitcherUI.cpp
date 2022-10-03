@@ -51,22 +51,18 @@ void QolourSwitcher::QolourSwitcherUI::DidActivate(bool firstActivation, bool ad
          colourScheme->saberBColor = colour;
       });
 
-      BeatSaberUI::CreateToggle(leftScreen->get_transform(), "Enable Extra Qolours", getModConfig().ExtraToggle.GetValue(), Vector2(0.0f, -12.0f), [](bool value) { getModConfig().ExtraToggle.SetValue(value); });
-
-      if (getModConfig().ExtraToggle.GetValue())
+      BeatSaberUI::CreateColorPicker(centreScreen->get_transform(), "Bomb Colour", getModConfig().BombColour.GetValue(), [&](Color colour)
       {
-         BeatSaberUI::CreateColorPicker(centreScreen->get_transform(), "Bomb Colour", getModConfig().BombColour.GetValue(), [&](Color colour)
-         {
-            getModConfig().BombColour.SetValue(colour);
-            getModConfig().ColoursChanged.SetValue(true);
-         });
+         getModConfig().BombColour.SetValue(colour);
+         getModConfig().ColoursChanged.SetValue(true);
+      });
+      
+      BeatSaberUI::CreateColorPicker(centreScreen->get_transform(), "Wall Colour", colourScheme->get_obstaclesColor(), [colourScheme](Color colour)
+      {
+         colourScheme->obstaclesColor = colour;
+         getModConfig().ColoursChanged.SetValue(true);
+      });
 
-         BeatSaberUI::CreateColorPicker(centreScreen->get_transform(), "Wall Colour", colourScheme->get_obstaclesColor(), [colourScheme](Color colour)
-         {
-            colourScheme->obstaclesColor = colour;
-            getModConfig().ColoursChanged.SetValue(true);
-         });
-      }
    }
 
    if (!screenOn)
