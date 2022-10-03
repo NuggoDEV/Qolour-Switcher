@@ -55,13 +55,13 @@ void QolourSwitcher::QolourSwitcherUI::DidActivate(bool firstActivation, bool ad
 
       if (getModConfig().ExtraToggle.GetValue())
       {
-         BeatSaberUI::CreateColorPicker(centreScreen->get_transform(), "Bomb Colour", getModConfig().BombColour.GetValue(), [colourScheme](Color colour)
+         BeatSaberUI::CreateColorPicker(centreScreen->get_transform(), "Bomb Colour", getModConfig().BombColour.GetValue(), [&](Color colour)
          {
             getModConfig().BombColour.SetValue(colour);
             getModConfig().ColoursChanged.SetValue(true);
          });
 
-         BeatSaberUI::CreateColorPicker(leftScreen->get_transform(), "Wall Colour", colourScheme->get_obstaclesColor(), [colourScheme](Color colour)
+         BeatSaberUI::CreateColorPicker(centreScreen->get_transform(), "Wall Colour", colourScheme->get_obstaclesColor(), [colourScheme](Color colour)
          {
             colourScheme->obstaclesColor = colour;
             getModConfig().ColoursChanged.SetValue(true);
