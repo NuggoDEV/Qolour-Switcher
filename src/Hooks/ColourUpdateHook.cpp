@@ -20,6 +20,7 @@ using namespace Chroma;
 #include "System/Collections/Generic/Dictionary_2.hpp"
 
 #include "GlobalNamespace/BeatEffectSpawner.hpp"
+#include "GlobalNamespace/GameplayCoreInstaller.hpp"
 
 #include "UnityEngine/Object.hpp"
 using namespace UnityEngine;
@@ -46,14 +47,25 @@ MAKE_AUTO_HOOK_MATCH(BeatEffectSpawner_Update, &BeatEffectSpawner::Update, void,
 
             if (getModConfig().ExtraToggle.GetValue())
             {
+                BombAPI::setGlobalBombColorSafe(bombColour);
                 ObstacleAPI::setAllObstacleColorSafe(wallColour);
             }
             getModConfig().ColoursChanged.SetValue(false);
         }
 
-        BombAPI::setGlobalBombColorSafe(bombColour);
+        
     }
 }
+
+
+MAKE_AUTO_HOOK_MATCH(GameplayCoreInstaller_InstallBindings, &GameplayCoreInstaller::InstallBindings, void, GameplayCoreInstaller *self)
+{
+    GameplayCoreInstaller_InstallBindings(self);
+
+    getModConfig().ColoursChanged.SetValue(true);
+}
+
+
 
 MAKE_AUTO_HOOK_MATCH(a, &AudioTimeSyncController::Awake, void, AudioTimeSyncController *self)
 {
