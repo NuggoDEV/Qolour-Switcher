@@ -2,9 +2,12 @@
 #include "QolourSwitcherConfig.hpp"
 #include "QolourSwitcherHooks.hpp"
 
-#include "chroma/shared/SaberAPI.hpp"
+#include "chroma/shared/BombAPI.hpp"
 #include "chroma/shared/NoteAPI.hpp"
+#include "chroma/shared/ObstacleAPI.hpp"
 using namespace Chroma;
+
+#include "GlobalNamespace/AudioTimeSyncController.hpp"
 
 #include "GlobalNamespace/SaberModelController.hpp"
 #include "GlobalNamespace/SaberManager.hpp"
@@ -34,8 +37,33 @@ MAKE_AUTO_HOOK_MATCH(BeatEffectSpawner_Update, &BeatEffectSpawner::Update, void,
 
         auto colourA = colourScheme->saberAColor;
         auto colourB = colourScheme->saberBColor;
+        Color wallColour = colourScheme->obstaclesColor;
+        Color bombColour = getModConfig().BombColour.GetValue();
 
-        NoteAPI::setGlobalNoteColorSafe(std::make_optional(colourA), std::make_optional(colourB));
-        getModConfig().ColoursChanged.SetValue(false);
+        if (getModConfig().ColoursChanged.GetValue())
+        {
+            NoteAPI::setGlobalNoteColorSafe(std::make_optional(colourA), std::make_optional(colourB));
+
+            if (getModConfig().ExtraToggle.GetValue())
+            {
+                ObstacleAPI::setAllObstacleColorSafe(wallColour);
+            }
+            getModConfig().ColoursChanged.SetValue(false);
+        }
+
+        BombAPI::setGlobalBombColorSafe(bombColour);
+    }
+}
+
+MAKE_AUTO_HOOK_MATCH(a, &AudioTimeSyncController::Awake, void, AudioTimeSyncController *self)
+{
+    a(self);
+
+    auto SongTimeModel = Object::FindObjectOfType<AudioTimeSyncController *>();
+    auto SongTime = SongTimeModel->songTime;
+
+    if (SongTime == 10)
+    {
+        NoteAPI::setGlobalNoteColorSafe(Color(1, 0, 0, 1), Color(0, 1, 0, 1));
     }
 }
