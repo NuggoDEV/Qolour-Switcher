@@ -31,38 +31,31 @@ using namespace GlobalNamespace;
 MAKE_AUTO_HOOK_MATCH(BeatEffectSpawner_Start, &PauseMenuManager::ContinueButtonPressed, void, PauseMenuManager *self)
 {
     BeatEffectSpawner_Start(self);
+    
+    getLogger().info("Finding All Colours.");
 
-    if (!getModConfig().ModToggle.GetValue())
+    auto playerDataModel = Object::FindObjectOfType<PlayerDataModel *>();
+    auto playerData = playerDataModel->playerData;
+    auto colourScheme = playerData->colorSchemesSettings->GetColorSchemeForId(playerData->colorSchemesSettings->selectedColorSchemeId);
+
+    auto colourA = colourScheme->saberAColor;
+    auto colourB = colourScheme->saberBColor;
+    Color wallColour = colourScheme->obstaclesColor;
+    Color bombColour = getModConfig().BombColour.GetValue();
+
+    getLogger().info("All Colours Found!");
+
+    if (getModConfig().ColoursChanged.GetValue())
     {
-        getLogger().info("Finding All Colours.");
+        getLogger().info("Updating Colours!");
 
-        auto playerDataModel = Object::FindObjectOfType<PlayerDataModel *>();
-        auto playerData = playerDataModel->playerData;
-        auto colourScheme = playerData->colorSchemesSettings->GetColorSchemeForId(playerData->colorSchemesSettings->selectedColorSchemeId);
+        NoteAPI::setGlobalNoteColorSafe(std::make_optional(colourA), std::make_optional(colourB));
+        BombAPI::setGlobalBombColorSafe(bombColour);
+        ObstacleAPI::setAllObstacleColorSafe(wallColour);
+        
+        getModConfig().ColoursChanged.SetValue(false);
 
-        auto colourA = colourScheme->saberAColor;
-        auto colourB = colourScheme->saberBColor;
-        Color wallColour = colourScheme->obstaclesColor;
-        Color bombColour = getModConfig().BombColour.GetValue();
-
-        getLogger().info("All Colours Found!");
-
-        if (getModConfig().ColoursChanged.GetValue())
-        {
-            getLogger().info("Updating Colours!");
-
-            NoteAPI::setGlobalNoteColorSafe(std::make_optional(colourA), std::make_optional(colourB));
-            BombAPI::setGlobalBombColorSafe(bombColour);
-            ObstacleAPI::setAllObstacleColorSafe(wallColour);
-            
-            getModConfig().ColoursChanged.SetValue(false);
-
-            getLogger().info("Colours Updated");
-        }
-    }
-    else 
-    {
-        getLogger().info("Colours not updated due to mod being disabled!");
+        getLogger().info("Colours Updated");
     }
 }
 
@@ -70,20 +63,11 @@ MAKE_AUTO_HOOK_MATCH(GameplayCoreInstaller_InstallBindings, &GameplayCoreInstall
 {
     GameplayCoreInstaller_InstallBindings(self);
 
-    if (!getModConfig().ColoursChanged.GetValue())
-    {
-        Color bombColour = getModConfig().BombColour.GetValue();
+    getModConfig().ColoursChanged.SetValue(true);
+    getLogger().info("Set Colours Changed to True on Map Start!");
 
-        getModConfig().ColoursChanged.SetValue(true);
-        getLogger().info("Set Colours Changed to True!");
-
-        BombAPI::setGlobalBombColorSafe(bombColour);
-        getLogger().info("Set Bomb Colour!");
-    }
-    else 
-    {
-        getLogger().info("Not setting Colours Changed to True + Not Setting Bomb Colour!");
-    }
+    BombAPI::setGlobalBombColorSafe(getModConfig().BombColour.GetValue());
+    getLogger().info("Set Bomb Colour on Map Start!");
 }
 
 

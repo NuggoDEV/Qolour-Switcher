@@ -2,7 +2,6 @@
 #include "QolourSwitcherHooks.hpp"
 
 #include "GlobalNamespace/MainMenuViewController.hpp"
-#include "GlobalNamespace/GameCoreSceneSetup.hpp"
 #include "GlobalNamespace/StandardLevelDetailViewController.hpp"
 #include "GlobalNamespace/ColorSchemeColorToggleController.hpp"
 #include "GlobalNamespace/PlayerDataModel.hpp"
@@ -18,7 +17,7 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
     MainMenuViewController_DidActivate(self, firstActivation, addedToHierarchy, screenSystemEnabling);
     auto playerDataModel = Object::FindObjectOfType<PlayerDataModel *>();
     auto playerData = playerDataModel->playerData;
-    bool customColours = playerData->colorSchemesSettings->overrideDefaultColors; // Look at ColorSchemesSettings.hpp and QolourSwitcherUI.cpp
+    bool customColours = playerData->colorSchemesSettings->overrideDefaultColors;
     
     if (!customColours)
     {
