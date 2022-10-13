@@ -49,13 +49,14 @@ MAKE_AUTO_HOOK_MATCH(ResultsViewController_DidActivate, &ResultsViewController::
     
     if (firstActivation)
     {
-        restoreScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(-1.0f, 0.1f, 0.0f), Vector3(90.0f, 0.0f, 0.0f), 0.0f, false, false);
-        BeatSaberUI::CreateUIButton(restoreScreen->get_transform(), "Restore Start Colours", Vector2(40.0f, 10.0f), [colourScheme]()
+        restoreScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(-1.20f, -0.1f, 4.0f), Vector3(35.0f, 0.0f, 0.0f), 0.0f, false, false);
+        BeatSaberUI::CreateUIButton(restoreScreen->get_transform(), "Restore Colours", Vector2(40.0f, 10.0f), [colourScheme]()
         {
             colourScheme->saberAColor = leftSaber;
             colourScheme->saberBColor = rightSaber;
             colourScheme->obstaclesColor = wallColour;
             getModConfig().BombColour.SetValue(bombColour);
+            getModConfig().DidUserCrash.SetValue(false);
         });
         restoreScreenActive = true;
     }
@@ -72,4 +73,5 @@ MAKE_AUTO_HOOK_MATCH(ResultsViewController_DidDeactivate, &ResultsViewController
 
     restoreScreen->SetActive(false);
     restoreScreenActive = false;
+    getModConfig().DidUserCrash.SetValue(false);
 }
