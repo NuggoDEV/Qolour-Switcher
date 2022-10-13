@@ -20,11 +20,6 @@ using namespace GlobalNamespace;
 
 DEFINE_TYPE(QolourSwitcher, QolourSwitcherUI);
 
-
-GameObject *leftScreen;
-GameObject *centreScreen;
-bool screenOn = false;
-
 void QolourSwitcher::QolourSwitcherUI::DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling)
 {
 
@@ -34,13 +29,8 @@ void QolourSwitcher::QolourSwitcherUI::DidActivate(bool firstActivation, bool ad
 
    if (firstActivation)
    {
-      centreScreen = BeatSaberUI::CreateScrollView(get_transform());
-      leftScreen = QuestUI::BeatSaberUI::CreateFloatingScreen(Vector2(60.0f, 70.0f), Vector3(-2.6f, 1.0f, 3.1f), Vector3(0.0f, -40.0f, 0.0f), 0.0f, true, false);
+      GameObject *centreScreen = BeatSaberUI::CreateScrollView(get_transform());
 
-      // Mod Toggle Switch
-      BeatSaberUI::CreateToggle(leftScreen->get_transform(), "Disable Qolour Switcher", getModConfig().ModToggle.GetValue(), Vector2(0.0f, -5.0f), [](bool value) { getModConfig().ModToggle.SetValue(value); });
-
-      // Colour Picker Creators
       BeatSaberUI::CreateColorPicker(centreScreen->get_transform(), "Left Saber Colour", colourScheme->get_saberAColor(), [colourScheme](Color colour)
       {
          colourScheme->saberAColor = colour;
@@ -62,22 +52,5 @@ void QolourSwitcher::QolourSwitcherUI::DidActivate(bool firstActivation, bool ad
          colourScheme->obstaclesColor = colour;
          getModConfig().ColoursChanged.SetValue(true);
       });
-
    }
-
-   if (!screenOn)
-   {
-      screenOn = true;
-      leftScreen->SetActive(true);
-      centreScreen->SetActive(true);
-   }
-
-
-}
-
-void QolourSwitcher::QolourSwitcherUI::DidDeactivate(bool removedFromHierarchy, bool screenSystemDisabling)
-{
-   screenOn = false;
-   leftScreen->SetActive(false);
-   centreScreen->SetActive(false);
 }
