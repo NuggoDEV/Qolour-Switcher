@@ -59,18 +59,6 @@ MAKE_AUTO_HOOK_MATCH(BeatEffectSpawner_Start, &PauseMenuManager::ContinueButtonP
     }
 }
 
-MAKE_AUTO_HOOK_MATCH(GameplayCoreInstaller_InstallBindings, &GameplayCoreInstaller::InstallBindings, void, GameplayCoreInstaller *self)
-{
-    GameplayCoreInstaller_InstallBindings(self);
-
-    getModConfig().ColoursChanged.SetValue(true);
-    getLogger().info("Set Colours Changed to True on Map Start!");
-
-    BombAPI::setGlobalBombColorSafe(getModConfig().BombColour.GetValue());
-    getLogger().info("Set Bomb Colour on Map Start!");
-}
-
-
 
 //MAKE_AUTO_HOOK_MATCH(a, &AudioTimeSyncController::Awake, void, AudioTimeSyncController *self)
 //{

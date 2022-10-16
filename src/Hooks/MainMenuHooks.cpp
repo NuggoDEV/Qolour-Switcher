@@ -66,30 +66,23 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
         auto vertical = BeatSaberUI::CreateVerticalLayoutGroup(modalSize->get_transform());
 
         auto layout = vertical;
-        auto button1 = horizontal;
-        auto button2 = horizontal;
+        auto button1 = vertical;
+        auto button2 = vertical;
+
         auto *layoutElem = layout->get_gameObject()->AddComponent<LayoutElement *>();
+        auto *button1Elem = button1->get_gameObject()->AddComponent<LayoutElement *>();
+        auto *button2Elem = button2->get_gameObject()->AddComponent<LayoutElement *>();
         layoutElem->set_preferredHeight(sizeDelta.x);
         layoutElem->set_preferredWidth(sizeDelta.y);
 
         layout->set_childAlignment(TextAnchor::MiddleCenter);
-        button1->set_childAlignment(TextAlignmentOptions::BottomLeft);
-        button2->set_childAlignment(TextAlignmentOptions::BottomRight);
+        button1->set_childAlignment(TextAnchor::LowerLeft);
+        button2->set_childAlignment(TextAnchor::LowerRight);
 
         layout->set_childControlHeight(true);
         layout->set_childForceExpandHeight(true);
         layout->set_childControlWidth(true);
         layout->set_childForceExpandWidth(true);
-
-        //button1->set_childControlHeight(true);
-        ////button1->set_childForceExpandHeight(true);
-        //button1->set_childControlWidth(true);
-        ////button1->set_childForceExpandWidth(true);
-//
-        //button2->set_childControlHeight(true);
-        ////button2->set_childForceExpandHeight(true);
-        //button2->set_childControlWidth(true);
-        //button2->set_childForceExpandWidth(true);
         
 
         modalSize->Show(true, true, nullptr);
@@ -100,7 +93,7 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
         text->set_fontSize(2.0f);
 
 
-        auto restore = BeatSaberUI::CreateUIButton(button1->get_transform(), "Yes", Vector2(0.0f, -1.0f), Vector2(12.5f, 7.5f), [colourScheme]() 
+        auto restore = BeatSaberUI::CreateUIButton(button1->get_transform(), "Yes", Vector2(0.0f, -10.0f), Vector2(12.5f, 7.5f), [colourScheme]() 
         {
             
             colourScheme->saberAColor = getModConfig().LeftStart.GetValue();
@@ -111,7 +104,7 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
         Object::Destroy(restore->get_transform()->Find("Content")->GetComponent<LayoutElement *>());
         button1->get_rectTransform();
 
-        auto noRestore = BeatSaberUI::CreateUIButton(button2->get_transform(), "No", Vector2(0.0f, -1.0f), Vector2(12.5f, 7.5f), []() 
+        auto noRestore = BeatSaberUI::CreateUIButton(button2->get_transform(), "No", Vector2(0.0f, -10.0f), Vector2(12.5f, 7.5f), []() 
         {
 
         });
