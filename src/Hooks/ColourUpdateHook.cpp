@@ -59,6 +59,29 @@ MAKE_AUTO_HOOK_MATCH(BeatEffectSpawner_Start, &PauseMenuManager::ContinueButtonP
     }
 }
 
+#include "GlobalNamespace/AudioTimeSyncController.hpp"
+
+MAKE_AUTO_HOOK_MATCH(AudioTimeSyncController_Update, &AudioTimeSyncController::Update, void, AudioTimeSyncController *self)
+{
+    AudioTimeSyncController_Update(self);
+    int timeData = self->songTime;
+
+    auto playerDataModel = Object::FindObjectOfType<PlayerDataModel *>();
+    auto playerData = playerDataModel->playerData;
+    auto colourScheme = playerData->colorSchemesSettings->GetColorSchemeForId(playerData->colorSchemesSettings->selectedColorSchemeId);
+
+    auto colourA = colourScheme->saberAColor;
+    auto colourB = colourScheme->saberBColor;
+
+    if (timeData == 10)
+    {
+        NoteAPI::setGlobalNoteColorSafe(Color(0.1, 0.1, 0.1, 0.5), Color(0.5, 0.5, 0.5, 0.1));
+    } else if (timeData == 15)
+    {
+        NoteAPI::setGlobalNoteColorSafe(colourA, colourB);
+    }
+    
+}
 
 //MAKE_AUTO_HOOK_MATCH(a, &AudioTimeSyncController::Awake, void, AudioTimeSyncController *self)
 //{

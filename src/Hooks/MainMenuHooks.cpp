@@ -66,8 +66,8 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
         auto vertical = BeatSaberUI::CreateVerticalLayoutGroup(modalSize->get_transform());
 
         auto layout = vertical;
-        auto button1 = vertical;
-        auto button2 = vertical;
+        auto button1 = horizontal;
+        auto button2 = horizontal;
 
         auto *layoutElem = layout->get_gameObject()->AddComponent<LayoutElement *>();
         auto *button1Elem = button1->get_gameObject()->AddComponent<LayoutElement *>();
@@ -91,9 +91,9 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
         text = BeatSaberUI::CreateText(layout->get_transform(), "It appears your game has crashed or has been closed before returning\nto the song selection screen.\n\nWould you like to restore the colours used at the start of the level?");
         text->set_alignment(TextAlignmentOptions::Center);
         text->set_fontSize(2.0f);
+        
 
-
-        auto restore = BeatSaberUI::CreateUIButton(button1->get_transform(), "Yes", Vector2(0.0f, -10.0f), Vector2(12.5f, 7.5f), [colourScheme]() 
+        auto restore = BeatSaberUI::CreateUIButton(button1->get_transform(), "Yes", "ActionButton",  {-10, 0}, [colourScheme]() 
         {
             
             colourScheme->saberAColor = getModConfig().LeftStart.GetValue();
@@ -102,9 +102,8 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
             colourScheme->obstaclesColor = getModConfig().WallStart.GetValue();
         });
         Object::Destroy(restore->get_transform()->Find("Content")->GetComponent<LayoutElement *>());
-        button1->get_rectTransform();
 
-        auto noRestore = BeatSaberUI::CreateUIButton(button2->get_transform(), "No", Vector2(0.0f, -10.0f), Vector2(12.5f, 7.5f), []() 
+        auto noRestore = BeatSaberUI::CreateUIButton(button2->get_transform(), "No", "ActionButton", {-10, 0}, []() 
         {
 
         });
