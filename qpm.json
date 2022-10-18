@@ -4,7 +4,7 @@
   "info": {
     "name": "Qolour Switcher",
     "id": "QolourSwitcher",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "url": null,
     "additionalData": {
       "overrideSoName": "libQolourSwitcher.so"
