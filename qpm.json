@@ -17,23 +17,13 @@
       "additionalData": {}
     },
     {
-      "id": "beatsaber-hook",
-      "versionRange": "=3.12.0",
-      "additionalData": {}
-    },
-    {
-      "id": "codegen",
-      "versionRange": "=0.25.0",
-      "additionalData": {}
-    },
-    {
       "id": "config-utils",
       "versionRange": "^0.8.0",
       "additionalData": {}
     },
     {
-      "id": "questui",
-      "versionRange": "^0.16.4",
+      "id": "chroma",
+      "versionRange": "^2.6.5",
       "additionalData": {}
     },
     {
@@ -42,8 +32,18 @@
       "additionalData": {}
     },
     {
-      "id": "chroma",
-      "versionRange": "^2.6.5",
+      "id": "codegen",
+      "versionRange": "=0.25.0",
+      "additionalData": {}
+    },
+    {
+      "id": "questui",
+      "versionRange": "=0.16.4",
+      "additionalData": {}
+    },
+    {
+      "id": "beatsaber-hook",
+      "versionRange": "=3.12.0",
       "additionalData": {}
     }
   ],
