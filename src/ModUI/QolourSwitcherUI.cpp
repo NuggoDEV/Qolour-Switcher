@@ -52,5 +52,12 @@ void QolourSwitcher::QolourSwitcherUI::DidActivate(bool firstActivation, bool ad
          colourScheme->obstaclesColor = colour;
          getModConfig().ColoursChanged.SetValue(true);
       });
+
+      std::vector<StringW> positions  { "Top", "Left Side", "Right Side" };
+
+      BeatSaberUI::CreateDropdown(centreScreen->get_transform(), "Colour Picker Position", getModConfig().ColourPickerLocation.GetValue(), positions, [&](std::string value)
+      {
+         getModConfig().ColourPickerLocation.SetValue(value);
+      });
    }
 }

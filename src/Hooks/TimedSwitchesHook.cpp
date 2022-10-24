@@ -38,17 +38,4 @@ MAKE_AUTO_HOOK_MATCH(AudioTimeSyncController_Update, &AudioTimeSyncController::U
     {
         NoteAPI::setGlobalNoteColorSafe(colourA, colourB);
     }
-    
-}
-MAKE_AUTO_HOOK_MATCH(a, &AudioTimeSyncController::Awake, void, AudioTimeSyncController *self)
-{
-    a(self);
-
-    auto SongTimeModel = Object::FindObjectOfType<AudioTimeSyncController *>();
-    float SongTime = SongTimeModel->songTime;
-
-    if (SongTime == 10.0f)
-    {
-        NoteAPI::setGlobalNoteColorSafe(Color(1, 0, 0, 1), Color(0, 1, 0, 1));
-    }
 }
