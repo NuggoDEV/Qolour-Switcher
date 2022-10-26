@@ -1,6 +1,6 @@
 #include "main.hpp"
-#include "QolourSwitcherHooks.hpp"
-#include "QolourSwitcherConfig.hpp"
+#include "Hooks.hpp"
+#include "ModConfig.hpp"
 
 #include "ModUI/QolourSwitcherUI.hpp"
 using namespace QolourSwitcher;
@@ -51,7 +51,7 @@ extern "C" void load() {
     getLogger().info("Installing Qolour Switcher Hooks");
 
     auto &logger = getLogger();
-    QolourSwitcherHooks::InstallHooks(logger);
+    Hooks::InstallHooks(logger);
 
     CoreAPI::addForceEnableChromaHooks(modInfo);
 
