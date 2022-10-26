@@ -4,7 +4,7 @@
 #include "beatsaber-hook/shared/utils/logging.hpp"
 #include "beatsaber-hook/shared/utils/hooking.hpp"
 
-class QolourSwitcherHooks 
+class Hooks 
 {
 	private:
 		inline static std::vector<void(*)(Logger& logger)> installFuncs;
@@ -23,7 +23,7 @@ class QolourSwitcherHooks
 #define AUTO_INSTALL(name_) \
 struct Auto_Hook_##name_ { \
     Auto_Hook_##name_() { \
-        QolourSwitcherHooks::AddInstallFunc(::Hooking::InstallHook<Hook_##name_>);\
+        Hooks::AddInstallFunc(::Hooking::InstallHook<Hook_##name_>);\
     } \
 }; \
 static Auto_Hook_##name_ Auto_Hook_Instance_##name_;
