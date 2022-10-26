@@ -64,10 +64,11 @@ MAKE_AUTO_HOOK_MATCH(PM_GameplayCoreInstaller_InstallBindings, &GameplayCoreInst
     auto playerData = playerDataModel->playerData;
     auto colourScheme = playerData->colorSchemesSettings->GetColorSchemeForId(playerData->colorSchemesSettings->selectedColorSchemeId);
 
-    leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(-0.4f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
-    rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(0.4f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
-    bombScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(-1.2f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
-    wallScreen = BeatSaberUI::CreateFloatingScreen(Vector2(1.0f, 1.0f), Vector3(1.2f, 2.85f, 2.4f), Vector3(-30.0f, 0.0f, 0.0f), 0.0f, false, false);
+    leftSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), getModConfig().LeftNotePosition.GetValue(), getModConfig().LeftNoteRotation.GetValue(), 0.0f, false, false);
+    rightSaberScreen = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), getModConfig().RightNotePosition.GetValue(), getModConfig().RightNoteRotation.GetValue(), 0.0f, false, false);
+    bombScreen = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), getModConfig().BombPosition.GetValue(), getModConfig().BombRotation.GetValue(), 0.0f, false, false);
+    wallScreen = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), getModConfig().WallPosition.GetValue(), getModConfig().WallRotation.GetValue(), 0.0f, false, false);
+    
     BeatSaberUI::CreateText(leftSaberScreen->get_transform(), "Left Saber Colour!", Vector2(13.5f, -5.0f));
     BeatSaberUI::CreateColorPicker(leftSaberScreen->get_transform(), "", colourScheme->get_saberAColor(), [colourScheme](Color colour)
     {
@@ -84,6 +85,7 @@ MAKE_AUTO_HOOK_MATCH(PM_GameplayCoreInstaller_InstallBindings, &GameplayCoreInst
         getModConfig().ColoursChanged.SetValue(true);
         getLogger().info("Saved Right Saber Colour Successfully!");
     });
+
     BeatSaberUI::CreateText(bombScreen->get_transform(), "Bomb Colour!", Vector2(16.0f, -5.0f));
     BeatSaberUI::CreateColorPicker(bombScreen->get_transform(), "", getModConfig().BombColour.GetValue(), [&](Color colour)
     {
@@ -92,6 +94,7 @@ MAKE_AUTO_HOOK_MATCH(PM_GameplayCoreInstaller_InstallBindings, &GameplayCoreInst
         getModConfig().ColoursChanged.SetValue(true);
         getLogger().info("Saved Bomb Colour Successfully!");
     });
+
     BeatSaberUI::CreateText(wallScreen->get_transform(), "Wall Colour!", Vector2(16.0f, -5.0f));
     BeatSaberUI::CreateColorPicker(wallScreen->get_transform(), "", colourScheme->get_obstaclesColor(), [colourScheme](Color colour)
     {
@@ -100,6 +103,7 @@ MAKE_AUTO_HOOK_MATCH(PM_GameplayCoreInstaller_InstallBindings, &GameplayCoreInst
         getModConfig().ColoursChanged.SetValue(true);
         getLogger().info("Saved Wall Colour Successfully!");
     });
+
     screensEnabled = false;
 
     leftSaberScreen->SetActive(false);

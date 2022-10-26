@@ -109,6 +109,49 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
     //    });
     //    Object::Destroy(noRestore->get_transform()->Find("Content")->GetComponent<LayoutElement *>());
     //}
+
+    if (getModConfig().ColourPickerLocation.GetValue() == "Top")
+    {
+        getModConfig().LeftNotePosition.SetValue({ -0.4f, 2.85f, 2.4f });
+        getModConfig().LeftNoteRotation.SetValue({ -30.0f, 0.0f, 0.0f });
+
+        getModConfig().RightNotePosition.SetValue({ 0.4f, 2.85f, 2.4f });
+        getModConfig().RightNoteRotation.SetValue({ -30.0f, 0.0f, 0.0f });
+
+        getModConfig().BombPosition.SetValue({ -1.2f, 2.85f, 2.4f });
+        getModConfig().BombRotation.SetValue({ -30.0f, 0.0f, 0.0f });
+
+        getModConfig().WallPosition.SetValue({ 1.2f, 2.85f, 2.4f });
+        getModConfig().WallRotation.SetValue({ -30.0f, 0.0f, 0.0f });
+    }
+    else if (getModConfig().ColourPickerLocation.GetValue() == "Left Side")
+    {
+        getModConfig().LeftNotePosition.SetValue({ -2.0f, 1.9f, 0.2f });
+        getModConfig().LeftNoteRotation.SetValue({ 0.0f, -89.0f, 0.0f });
+
+        getModConfig().RightNotePosition.SetValue({ -1.985f, 1.9f, 1.1f });
+        getModConfig().RightNoteRotation.SetValue({ 0.0f, -89.0f, 0.0f  });
+
+        getModConfig().BombPosition.SetValue({ -2.0f, 1.5f, 0.2f });
+        getModConfig().BombRotation.SetValue({ 0.0f, -89.0f, 0.0f });
+
+        getModConfig().WallPosition.SetValue({ -1.985f, 1.5f, 1.1f });
+        getModConfig().WallRotation.SetValue({ 0.0f, -89.0f, 0.0f });
+    }
+    else if (getModConfig().ColourPickerLocation.GetValue() == "Right Side")
+    {
+        getModConfig().LeftNotePosition.SetValue({ 2.0f, 1.9f, 0.2f });
+        getModConfig().LeftNoteRotation.SetValue({ 0.0f, 89.0f, 0.0f });
+
+        getModConfig().RightNotePosition.SetValue({ 1.985f, 1.9f, 1.1f });
+        getModConfig().RightNoteRotation.SetValue({ 0.0f, 89.0f, 0.0f  });
+
+        getModConfig().BombPosition.SetValue({ 2.0f, 1.5f, 0.2f });
+        getModConfig().BombRotation.SetValue({ 0.0f, 89.0f, 0.0f });
+
+        getModConfig().WallPosition.SetValue({ 1.985f, 1.5f, 1.1f });
+        getModConfig().WallRotation.SetValue({ 0.0f, 89.0f, 0.0f });
+    }
 }
 
 
