@@ -8,6 +8,7 @@ using namespace UnityEngine;
 DECLARE_CONFIG(ModConfig, 
     CONFIG_VALUE(DidUserCrash, bool, "If the user crashes before results screen", true);
     CONFIG_VALUE(ColoursChanged, bool, "When a Colour Gets Changed", false);
+    CONFIG_VALUE(BombColour, Color, "", Color(0.1, 0.1, 0.1, 0.5));
 
     CONFIG_VALUE(LeftStart, Color, "Left Saber Level Start Value", Color(1, 0, 0, 1));
     CONFIG_VALUE(RightStart, Color, "Right Saber Level Start Value", Color(0, 0, 1, 1));
@@ -15,8 +16,6 @@ DECLARE_CONFIG(ModConfig,
     CONFIG_VALUE(WallStart, Color, "Wall Level Start Value", Color(0.7, 0, 0, 1));
 
     CONFIG_VALUE(ColourPickerLocation, std::string, "Position of the Colour Pickers", "Top");
-
-    CONFIG_VALUE(AmountOfTimedSwitches, int, "The amount of timed colour switches", 0);
 
     CONFIG_VALUE(LeftNotePosition, Vector3, "Left Note Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
     CONFIG_VALUE(LeftNoteRotation, Vector3, "Left Note Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
@@ -30,15 +29,20 @@ DECLARE_CONFIG(ModConfig,
     CONFIG_VALUE(WallPosition, Vector3, "Wall Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
     CONFIG_VALUE(WallRotation, Vector3, "Wall Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
 
-    CONFIG_VALUE(Time1, int, "First Timed Switch", 0);
-    CONFIG_VALUE(Time2, int, "Second Timed Switch", 0);
-    CONFIG_VALUE(Time3, int, "Third Timed Switch", 0);
-    CONFIG_VALUE(Time4, int, "Fourth Timed Switch", 0);
-    CONFIG_VALUE(Time5, int, "Fifth Timed Switch", 0);
+    CONFIG_VALUE(TimedSwitch1, bool, "", false);
+    CONFIG_VALUE(TimedSwitch2, bool, "", false);
+    CONFIG_VALUE(TimedSwitch3, bool, "", false);
+    CONFIG_VALUE(TimedSwitch4, bool, "", false);
+
+    CONFIG_VALUE(TimedSwitch1Int, int, "", 0);
+    CONFIG_VALUE(TimedSwitch2Int, int, "", 120);
+    CONFIG_VALUE(TimedSwitch3Int, int, "", 240);
+    CONFIG_VALUE(TimedSwitch4Int, int, "", 360);
     
     CONFIG_INIT_FUNCTION(
         CONFIG_INIT_VALUE(DidUserCrash);
         CONFIG_INIT_VALUE(ColoursChanged);
+        CONFIG_INIT_VALUE(BombColour);
 
         CONFIG_INIT_VALUE(LeftStart);
         CONFIG_INIT_VALUE(RightStart);
@@ -46,8 +50,6 @@ DECLARE_CONFIG(ModConfig,
         CONFIG_INIT_VALUE(WallStart);
 
         CONFIG_INIT_VALUE(ColourPickerLocation);
-
-        CONFIG_INIT_VALUE(AmountOfTimedSwitches);
 
         CONFIG_INIT_VALUE(LeftNotePosition);
         CONFIG_INIT_VALUE(LeftNoteRotation);
@@ -61,10 +63,15 @@ DECLARE_CONFIG(ModConfig,
         CONFIG_INIT_VALUE(WallPosition);
         CONFIG_INIT_VALUE(WallRotation);
 
-        CONFIG_INIT_VALUE(Time1);
-        CONFIG_INIT_VALUE(Time2);
-        CONFIG_INIT_VALUE(Time3);
-        CONFIG_INIT_VALUE(Time4);
-        CONFIG_INIT_VALUE(Time5);
+        CONFIG_INIT_VALUE(TimedSwitch1);
+        CONFIG_INIT_VALUE(TimedSwitch2);
+        CONFIG_INIT_VALUE(TimedSwitch3);
+        CONFIG_INIT_VALUE(TimedSwitch4);
+
+        CONFIG_INIT_VALUE(TimedSwitch1Int);
+        CONFIG_INIT_VALUE(TimedSwitch2Int);
+        CONFIG_INIT_VALUE(TimedSwitch3Int);
+        CONFIG_INIT_VALUE(TimedSwitch4Int);
+
     )
 )
