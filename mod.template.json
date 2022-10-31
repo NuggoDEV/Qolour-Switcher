@@ -11,8 +11,8 @@
   "dependencies": [
     {
       "id": "Chroma",
-      "version": "2.6.5",
-      "downloadIfMissing": "https://github.com/bsq-ports/Chroma/releases/download/v2.6.5/chroma.qmod"
+      "version": "2.7.0",
+      "downloadIfMissing": "https://github.com/bsq-ports/Chroma/releases/download/v2.7.0/chroma.qmod"
     }
   ],
   "modFiles": [],

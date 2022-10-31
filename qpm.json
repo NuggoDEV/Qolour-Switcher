@@ -22,11 +22,6 @@
       "additionalData": {}
     },
     {
-      "id": "chroma",
-      "versionRange": "^2.6.5",
-      "additionalData": {}
-    },
-    {
       "id": "custom-types",
       "versionRange": "=0.15.21",
       "additionalData": {}
@@ -44,6 +39,11 @@
     {
       "id": "beatsaber-hook",
       "versionRange": "=3.14.0",
+      "additionalData": {}
+    },
+    {
+      "id": "chroma",
+      "versionRange": "^2.7.0",
       "additionalData": {}
     }
   ],
