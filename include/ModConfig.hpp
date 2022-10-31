@@ -15,29 +15,27 @@ DECLARE_CONFIG(ModConfig,
     CONFIG_VALUE(BombStart, Color, "Bomb Level Start Value", Color(0.1, 0.1, 0.1, 1));
     CONFIG_VALUE(WallStart, Color, "Wall Level Start Value", Color(0.7, 0, 0, 1));
 
-    CONFIG_VALUE(ColourPickerLocation, std::string, "Position of the Colour Pickers", "Top");
+    CONFIG_VALUE(TimedSwitch1, bool, "a", false);
+    CONFIG_VALUE(TimedSwitch2, bool, "b", false);
+    CONFIG_VALUE(TimedSwitch3, bool, "c", false);
+    CONFIG_VALUE(TimedSwitch4, bool, "d", false);
 
-    CONFIG_VALUE(LeftNotePosition, Vector3, "Left Note Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
-    CONFIG_VALUE(LeftNoteRotation, Vector3, "Left Note Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
+    CONFIG_VALUE(TimedSwitch1Int, int, "e", 0);
+    CONFIG_VALUE(TimedSwitch2Int, int, "f", 120);
+    CONFIG_VALUE(TimedSwitch3Int, int, "g", 240);
+    CONFIG_VALUE(TimedSwitch4Int, int, "h", 360);
 
-    CONFIG_VALUE(RightNotePosition, Vector3, "Right Note Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
-    CONFIG_VALUE(RightNoteRotation, Vector3, "Right Note Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
+    CONFIG_VALUE(TimedSwitch1LNColour, Color, "i", Color());
+    CONFIG_VALUE(TimedSwitch1RNColour, Color, "j", Color());
 
-    CONFIG_VALUE(BombPosition, Vector3, "Bomb Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
-    CONFIG_VALUE(BombRotation, Vector3, "Bomb Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
+    CONFIG_VALUE(TimedSwitch2LNColour, Color, "m", Color());
+    CONFIG_VALUE(TimedSwitch2RNColour, Color, "n", Color());
 
-    CONFIG_VALUE(WallPosition, Vector3, "Wall Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
-    CONFIG_VALUE(WallRotation, Vector3, "Wall Picker Position", Vector3(-2.0f, 0.4f, 0.2f));
+    CONFIG_VALUE(TimedSwitch3LNColour, Color, "q", Color());
+    CONFIG_VALUE(TimedSwitch3RNColour, Color, "r", Color());
 
-    CONFIG_VALUE(TimedSwitch1, bool, "", false);
-    CONFIG_VALUE(TimedSwitch2, bool, "", false);
-    CONFIG_VALUE(TimedSwitch3, bool, "", false);
-    CONFIG_VALUE(TimedSwitch4, bool, "", false);
-
-    CONFIG_VALUE(TimedSwitch1Int, int, "", 0);
-    CONFIG_VALUE(TimedSwitch2Int, int, "", 120);
-    CONFIG_VALUE(TimedSwitch3Int, int, "", 240);
-    CONFIG_VALUE(TimedSwitch4Int, int, "", 360);
+    CONFIG_VALUE(TimedSwitch4LNColour, Color, "u", Color());
+    CONFIG_VALUE(TimedSwitch4RNColour, Color, "v", Color());
     
     CONFIG_INIT_FUNCTION(
         CONFIG_INIT_VALUE(DidUserCrash);
@@ -49,20 +47,6 @@ DECLARE_CONFIG(ModConfig,
         CONFIG_INIT_VALUE(BombStart);
         CONFIG_INIT_VALUE(WallStart);
 
-        CONFIG_INIT_VALUE(ColourPickerLocation);
-
-        CONFIG_INIT_VALUE(LeftNotePosition);
-        CONFIG_INIT_VALUE(LeftNoteRotation);
-
-        CONFIG_INIT_VALUE(RightNotePosition);
-        CONFIG_INIT_VALUE(RightNoteRotation);
-
-        CONFIG_INIT_VALUE(BombPosition);
-        CONFIG_INIT_VALUE(BombRotation);
-
-        CONFIG_INIT_VALUE(WallPosition);
-        CONFIG_INIT_VALUE(WallRotation);
-
         CONFIG_INIT_VALUE(TimedSwitch1);
         CONFIG_INIT_VALUE(TimedSwitch2);
         CONFIG_INIT_VALUE(TimedSwitch3);
@@ -72,6 +56,18 @@ DECLARE_CONFIG(ModConfig,
         CONFIG_INIT_VALUE(TimedSwitch2Int);
         CONFIG_INIT_VALUE(TimedSwitch3Int);
         CONFIG_INIT_VALUE(TimedSwitch4Int);
+
+        CONFIG_INIT_VALUE(TimedSwitch1LNColour);
+        CONFIG_INIT_VALUE(TimedSwitch1RNColour);
+
+        CONFIG_INIT_VALUE(TimedSwitch2LNColour);
+        CONFIG_INIT_VALUE(TimedSwitch2RNColour);
+
+        CONFIG_INIT_VALUE(TimedSwitch3LNColour);
+        CONFIG_INIT_VALUE(TimedSwitch3RNColour);
+
+        CONFIG_INIT_VALUE(TimedSwitch4LNColour);
+        CONFIG_INIT_VALUE(TimedSwitch4RNColour);
 
     )
 )
