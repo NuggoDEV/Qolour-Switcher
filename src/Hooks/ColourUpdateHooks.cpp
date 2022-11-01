@@ -3,7 +3,7 @@
 #include "Hooks.hpp"
 
 #include "GlobalNamespace/PauseMenuManager.hpp"
-#include "GlobalNamespace/BeatEffectSpawner.hpp"
+#include "GlobalNamespace/GameplayCoreInstaller.hpp"
 #include "GlobalNamespace/AudioTimeSyncController.hpp"
 #include "GlobalNamespace/PlayerDataModel.hpp"
 #include "GlobalNamespace/PlayerData.hpp"
@@ -32,11 +32,20 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ContinueButtonPressed, &PauseMenuManager::
 }
 
 
-MAKE_AUTO_HOOK_MATCH(BeatEffectSpawner_Start, &BeatEffectSpawner::Start, void, BeatEffectSpawner *self)
+MAKE_AUTO_HOOK_MATCH(GameplayCoreInstaller_InstallBindings, &GameplayCoreInstaller::InstallBindings, void, GameplayCoreInstaller *self)
 {
-    BeatEffectSpawner_Start(self);
+    GameplayCoreInstaller_InstallBindings(self);
+
+    auto playerDataModel = Object::FindObjectOfType<PlayerDataModel *>();
+    auto playerData = playerDataModel->playerData;
+    auto colourScheme = playerData->colorSchemesSettings->GetColorSchemeForId(playerData->colorSchemesSettings->selectedColorSchemeId);
 
     BombAPI::setGlobalBombColorSafe(getModConfig().BombColour.GetValue());
+
+    getModConfig().BombStart.SetValue(getModConfig().BombColour.GetValue());
+    getModConfig().LeftStart.SetValue(colourScheme->get_saberAColor());
+    getModConfig().RightStart.SetValue(colourScheme->get_saberBColor());
+    getModConfig().WallStart.SetValue(colourScheme->get_obstaclesColor());
 }
 
 MAKE_AUTO_HOOK_MATCH(AudioTimeSyncController_Update, &AudioTimeSyncController::Update, void, AudioTimeSyncController *self)
