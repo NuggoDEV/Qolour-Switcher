@@ -20,6 +20,8 @@ using namespace GlobalNamespace;
 #include "questui/shared/BeatSaberUI.hpp"
 using namespace QuestUI;
 
+using namespace TMPro;
+
 DEFINE_TYPE(QolourSwitcher, QolourSwitcherUI);
 
 GameObject *leftFloatingContainer;
@@ -29,14 +31,14 @@ GameObject *rightFloatingContainer;
 GameObject *firstLeftNoteFloatingContainer;
 GameObject *firstRightNoteFloatingContainer;
 
-//GameObject *secondLeftNoteFloatingContainer;
-//GameObject *secondRightNoteFloatingContainer;
-//
-//GameObject *thirdLeftNoteFloatingContainer;
-//GameObject *thirdRightNoteFloatingContainer;
-//
-//GameObject *fourthLeftNoteFloatingContainer;
-//GameObject *fourthRightNoteFloatingContainer;
+GameObject *secondLeftNoteFloatingContainer;
+GameObject *secondRightNoteFloatingContainer;
+
+GameObject *thirdLeftNoteFloatingContainer;
+GameObject *thirdRightNoteFloatingContainer;
+
+GameObject *fourthLeftNoteFloatingContainer;
+GameObject *fourthRightNoteFloatingContainer;
 
 std::string SecondsToString(float value)
 {
@@ -63,7 +65,7 @@ void QolourSwitcherUI::DidActivate(bool firstActivation, bool addedToHierarchy, 
         // Create the containers
         GameObject *mainContainer = BeatSaberUI::CreateScrollableSettingsContainer(get_transform());
         leftFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(50.0, 60.0f), Vector3(-2.3f, 1.5f, 2.8f), Vector3(0.0f, -30.0f, 0.0f), 0.0f, true, false);
-        rightFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(50.0, 60.0f), Vector3(2.3f, 1.5f, 2.8f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, true, false);
+        rightFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(50.0, 70.0f), Vector3(2.3f, 1.5f, 2.8f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, true, false);
 
         // Creation of the four colour pickers
         // Left saber colour picker
@@ -116,64 +118,88 @@ void QolourSwitcherUI::DidActivate(bool firstActivation, bool addedToHierarchy, 
         auto ts4 = getModConfig().TimedSwitch4Int.GetValue();
     
         // Creation of timed switches time controllers
-        auto slider1 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "First Time", 1, ts1, 0, 120, Vector2(0.0f, -0.0f), [](int value)
+        auto slider1 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "First", 1, ts1, 0, 120, Vector2(0.0f, -0.0f), [](int value)
         {   getModConfig().TimedSwitch1Int.SetValue(value);    });
         slider1->FormatString = std::move(SecondsToString);
+        //slider1->get_transform()->Find("Content")->GetComponent<TextMeshProUGUI *>()->set_fontSize(15.0f);
 
-        auto slider2 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "Second Time", 1, ts2, ts1, 240, Vector2(0.0f, -16.0f), [](int value)
+        auto slider2 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "Second", 1, ts2, ts1, 240, Vector2(0.0f, -18.3f), [](int value)
         {   getModConfig().TimedSwitch2Int.SetValue(value);    });
         slider2->FormatString = std::move(SecondsToString);
+        //slider2->get_transform()->Find("Content")->GetComponent<TextMeshProUGUI *>()->set_fontSize(15.0f);
 
-        auto slider3 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "Third Time", 1, ts3, ts2, 360, Vector2(0.0f, -32.0f), [](int value)
+        auto slider3 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "Third", 1, ts3, ts2, 360, Vector2(0.0f, -34.8f), [](int value)
         {   getModConfig().TimedSwitch3Int.SetValue(value);    });
         slider3->FormatString = std::move(SecondsToString);
+        //slider3->get_transform()->Find("Content")->GetComponent<TextMeshProUGUI *>()->set_fontSize(15.0f);
 
-        auto slider4 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "Fourth Time", 1, ts4, ts3, 480, Vector2(0.0f, -48.0f), [](int value)
+        auto slider4 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "Fourth", 1, ts4, ts3, 480, Vector2(0.0f, -50.3f), [](int value)
         {   getModConfig().TimedSwitch4Int.SetValue(value);    });
         slider4->FormatString = std::move(SecondsToString);
+        //slider4->get_transform()->Find("Content")->GetComponent<TextMeshProUGUI *>()->set_fontSize(15.0f);
 
 
 
 
-        firstLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.1f, 2.2f, 2.7f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-        firstRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 2.2f, 2.7), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        firstLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.1f, 2.5f, 2.9f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        firstRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 2.5f, 2.496f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
 
-        //secondLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.3f, 1.5f, 2.8f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-        //secondRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.3f, 1.5f, 2.8f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-//
-        //thirdLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.3f, 1.5f, 2.8f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-        //thirdRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.3f, 1.5f, 2.8f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-//
-        //fourthLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.3f, 1.5f, 2.8f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-        //fourthRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(50.0, 60.0f), Vector3(2.3f, 1.5f, 2.8f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        secondLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.1f, 1.95f, 2.9f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        secondRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 1.95f, 2.496f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+
+        thirdLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.1f, 1.48f, 2.9f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        thirdRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 1.48f, 2.496f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+
+        fourthLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.1f, 1.0f, 2.9f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        fourthRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 1.0f, 2.496f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
 
 
         // First colour pickers
+        TextMeshProUGUI *firstLN = BeatSaberUI::CreateText(firstLeftNoteFloatingContainer->get_transform(), "Left Saber", Vector2(17.5f, -9.0f));
         BeatSaberUI::CreateColorPicker(firstLeftNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch1LNColour.GetValue(), [&](Color value)
         {    getModConfig().TimedSwitch1LNColour.SetValue(value);    });
+        firstLN->set_fontSize(3.0f);
+
+        TextMeshProUGUI *firstRN = BeatSaberUI::CreateText(firstRightNoteFloatingContainer->get_transform(), "Right Saber", Vector2(17.5f, -9.0f));
         BeatSaberUI::CreateColorPicker(firstRightNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch1RNColour.GetValue(), [&](Color value)
         {    getModConfig().TimedSwitch1RNColour.SetValue(value);    });
+        firstRN->set_fontSize(3.0f);
 
         
         // Second colour pickers
-        //BeatSaberUI::CreateColorPicker(secondLeftNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch2LNColour.GetValue(), [&](Color value)
-        //{    getModConfig().TimedSwitch2LNColour.SetValue(value);    });
-        //BeatSaberUI::CreateColorPicker(secondRightNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch2RNColour.GetValue(), [&](Color value)
-        //{    getModConfig().TimedSwitch2RNColour.SetValue(value);    });
-//
-//
-        //// Third colour pickers
-        //BeatSaberUI::CreateColorPicker(thirdLeftNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch3LNColour.GetValue(), [&](Color value)
-        //{    getModConfig().TimedSwitch3LNColour.SetValue(value);    });
-        //BeatSaberUI::CreateColorPicker(thirdRightNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch3RNColour.GetValue(), [&](Color value)
-        //{    getModConfig().TimedSwitch3RNColour.SetValue(value);    });
+        TextMeshProUGUI *secondLN = BeatSaberUI::CreateText(secondLeftNoteFloatingContainer->get_transform(), "Left Saber", Vector2(17.5f, -9.0f));
+        BeatSaberUI::CreateColorPicker(secondLeftNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch2LNColour.GetValue(), [&](Color value)
+        {    getModConfig().TimedSwitch2LNColour.SetValue(value);    });
+        secondLN->set_fontSize(3.0f);
+
+        TextMeshProUGUI *secondRN = BeatSaberUI::CreateText(secondRightNoteFloatingContainer->get_transform(), "Right Saber", Vector2(17.5f, -9.0f));
+        BeatSaberUI::CreateColorPicker(secondRightNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch2RNColour.GetValue(), [&](Color value)
+        {    getModConfig().TimedSwitch2RNColour.SetValue(value);    });
+        secondRN->set_fontSize(3.0f);
+
+
+        // Third colour pickers
+        TextMeshProUGUI *thirdLN = BeatSaberUI::CreateText(thirdLeftNoteFloatingContainer->get_transform(), "Left Saber", Vector2(17.5f, -9.0f));
+        BeatSaberUI::CreateColorPicker(thirdLeftNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch3LNColour.GetValue(), [&](Color value)
+        {    getModConfig().TimedSwitch3LNColour.SetValue(value);    });
+        thirdLN->set_fontSize(3.0f);
+
+        TextMeshProUGUI *thirdRN = BeatSaberUI::CreateText(thirdRightNoteFloatingContainer->get_transform(), "Right Saber", Vector2(17.5f, -9.0f));
+        BeatSaberUI::CreateColorPicker(thirdRightNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch3RNColour.GetValue(), [&](Color value)
+        {    getModConfig().TimedSwitch3RNColour.SetValue(value);    });
+        thirdRN->set_fontSize(3.0f);
 //
 //
         //// Fourth colour pickers
-        //BeatSaberUI::CreateColorPicker(fourthLeftNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch4LNColour.GetValue(), [&](Color value)
-        //{    getModConfig().TimedSwitch4LNColour.SetValue(value);    });
-        //BeatSaberUI::CreateColorPicker(fourthRightNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch4RNColour.GetValue(), [&](Color value)
-        //{    getModConfig().TimedSwitch4RNColour.SetValue(value);    });
+        TextMeshProUGUI *fourthLN = BeatSaberUI::CreateText(fourthLeftNoteFloatingContainer->get_transform(), "Left Saber", Vector2(17.5f, -9.0f));
+        BeatSaberUI::CreateColorPicker(fourthLeftNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch4LNColour.GetValue(), [&](Color value)
+        {    getModConfig().TimedSwitch4LNColour.SetValue(value);    });
+        fourthLN->set_fontSize(3.0f);
+
+        TextMeshProUGUI *fourthRN = BeatSaberUI::CreateText(fourthRightNoteFloatingContainer->get_transform(), "Right Saber", Vector2(17.5f, -9.0f));
+        BeatSaberUI::CreateColorPicker(fourthRightNoteFloatingContainer->get_transform(), "", getModConfig().TimedSwitch4RNColour.GetValue(), [&](Color value)
+        {    getModConfig().TimedSwitch4RNColour.SetValue(value);    });
+        fourthRN->set_fontSize(3.0f);
     }
 
     leftFloatingContainer->SetActive(true);
@@ -183,14 +209,14 @@ void QolourSwitcherUI::DidActivate(bool firstActivation, bool addedToHierarchy, 
     firstLeftNoteFloatingContainer->SetActive(true);
     firstRightNoteFloatingContainer->SetActive(true);
 
-    //secondLeftNoteFloatingContainer->SetActive(true);
-    //secondRightNoteFloatingContainer->SetActive(true);
-//
-    //thirdLeftNoteFloatingContainer->SetActive(true);
-    //thirdRightNoteFloatingContainer->SetActive(true);
-    //
-    //fourthLeftNoteFloatingContainer->SetActive(true);
-    //fourthRightNoteFloatingContainer->SetActive(true);
+    secondLeftNoteFloatingContainer->SetActive(true);
+    secondRightNoteFloatingContainer->SetActive(true);
+
+    thirdLeftNoteFloatingContainer->SetActive(true);
+    thirdRightNoteFloatingContainer->SetActive(true);
+    
+    fourthLeftNoteFloatingContainer->SetActive(true);
+    fourthRightNoteFloatingContainer->SetActive(true);
 }
 
 void QolourSwitcherUI::DidDeactivate(bool removedFromHierarchy, bool screenSystemDisabling)
@@ -202,12 +228,12 @@ void QolourSwitcherUI::DidDeactivate(bool removedFromHierarchy, bool screenSyste
     firstLeftNoteFloatingContainer->SetActive(false);
     firstRightNoteFloatingContainer->SetActive(false);
 
-    //secondLeftNoteFloatingContainer->SetActive(false);
-    //secondRightNoteFloatingContainer->SetActive(false);
-//
-    //thirdLeftNoteFloatingContainer->SetActive(false);
-    //thirdRightNoteFloatingContainer->SetActive(false);
-//
-    //fourthLeftNoteFloatingContainer->SetActive(false);
-    //fourthRightNoteFloatingContainer->SetActive(false);
+    secondLeftNoteFloatingContainer->SetActive(false);
+    secondRightNoteFloatingContainer->SetActive(false);
+
+    thirdLeftNoteFloatingContainer->SetActive(false);
+    thirdRightNoteFloatingContainer->SetActive(false);
+
+    fourthLeftNoteFloatingContainer->SetActive(false);
+    fourthRightNoteFloatingContainer->SetActive(false);
 }
