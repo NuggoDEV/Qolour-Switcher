@@ -25,17 +25,17 @@ DECLARE_CONFIG(ModConfig,
     CONFIG_VALUE(TimedSwitch3Int, int, "g", 240);
     CONFIG_VALUE(TimedSwitch4Int, int, "h", 360);
 
-    CONFIG_VALUE(TimedSwitch1LNColour, Color, "i", Color());
-    CONFIG_VALUE(TimedSwitch1RNColour, Color, "j", Color());
+    CONFIG_VALUE(TimedSwitch1LNColour, Color, "i", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch1RNColour, Color, "j", Color(0.1, 0.1, 0.1, 1));
 
-    CONFIG_VALUE(TimedSwitch2LNColour, Color, "m", Color());
-    CONFIG_VALUE(TimedSwitch2RNColour, Color, "n", Color());
+    CONFIG_VALUE(TimedSwitch2LNColour, Color, "m", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch2RNColour, Color, "n", Color(0.1, 0.1, 0.1, 1));
 
-    CONFIG_VALUE(TimedSwitch3LNColour, Color, "q", Color());
-    CONFIG_VALUE(TimedSwitch3RNColour, Color, "r", Color());
+    CONFIG_VALUE(TimedSwitch3LNColour, Color, "q", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch3RNColour, Color, "r", Color(0.1, 0.1, 0.1, 1));
 
-    CONFIG_VALUE(TimedSwitch4LNColour, Color, "u", Color());
-    CONFIG_VALUE(TimedSwitch4RNColour, Color, "v", Color());
+    CONFIG_VALUE(TimedSwitch4LNColour, Color, "u", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch4RNColour, Color, "v", Color(0.1, 0.1, 0.1, 1));
     
     CONFIG_INIT_FUNCTION(
         CONFIG_INIT_VALUE(DidUserCrash);
