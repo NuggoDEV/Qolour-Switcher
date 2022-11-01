@@ -7,7 +7,7 @@
 #include "GlobalNamespace/ColorSchemesSettings.hpp"
 #include "GlobalNamespace/ColorScheme.hpp"
 #include "GlobalNamespace/PauseMenuManager.hpp"
-#include "GlobalNamespace/BeatEffectSpawner.hpp"
+#include "GlobalNamespace/GameplayCoreInstaller.hpp"
 using namespace GlobalNamespace;
 
 #include "UnityEngine/Object.hpp"
@@ -28,40 +28,53 @@ MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, voi
 {
     PauseMenuManager_ShowMenu(self);
 
+    leftNoteContainer->SetActive(true);
+    rightNoteContainer->SetActive(true);
+    bombContainer->SetActive(true);
+    wallContainer->SetActive(true);
+}
+
+MAKE_AUTO_HOOK_MATCH(Pause_PauseMenuManager_ContinueButtonPressed, &PauseMenuManager::ContinueButtonPressed, void, PauseMenuManager *self)
+{
+    Pause_PauseMenuManager_ContinueButtonPressed(self);
+
+    leftNoteContainer->SetActive(false);
+    rightNoteContainer->SetActive(false);
+    bombContainer->SetActive(false);
+    wallContainer->SetActive(false);
+}
+
+MAKE_AUTO_HOOK_MATCH(Pause_GameplayCoreInstaller_InstallBindings, &GameplayCoreInstaller::InstallBindings, void, GameplayCoreInstaller *self)
+{
+    Pause_GameplayCoreInstaller_InstallBindings(self);
+
     auto playerDataModel = Object::FindObjectOfType<PlayerDataModel *>();
     auto playerData = playerDataModel->playerData;
     auto colourScheme = playerData->colorSchemesSettings->GetColorSchemeForId(playerData->colorSchemesSettings->selectedColorSchemeId);
 
-    if (firstActivation)
-    {
-        leftNoteContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(-1.2f, 2.85f, 2.3f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, true, true, 1);
-        rightNoteContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(-1.6f, 2.3f, 2.85f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, true, true, 1);
-        bombContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(1.2f, 2.3f, 2.85f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, true, true, 1);
-        wallContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(1.6f, 2.3f, 2.85f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, true, true, 1);
+    leftNoteContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(-0.4f, 2.85f, 2.4f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, false, false);
+    rightNoteContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(0.4f, 2.85f, 2.4f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, false, false);
+    bombContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(-1.2f, 2.85f, 2.4f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, false, false);
+    wallContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(1.2f, 2.85f, 2.4f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, false, false);
 
-        BeatSaberUI::CreateColorPicker(leftNoteContainer->get_transform(), "", colourScheme->get_saberAColor(), [colourScheme](Color value)
-        {   colourScheme->saberAColor = value;  });
+    BeatSaberUI::CreateText(leftNoteContainer->get_transform(), "Left Saber Colour!", Vector2(13.5f, -5.0f));
+    BeatSaberUI::CreateColorPicker(leftNoteContainer->get_transform(), "", colourScheme->get_saberAColor(), [colourScheme](Color value)
+    {   colourScheme->saberAColor = value;  });
 
-        BeatSaberUI::CreateColorPicker(rightNoteContainer->get_transform(), "", colourScheme->get_saberBColor(), [colourScheme](Color value)
-        {   colourScheme->saberBColor = value;  });
+    BeatSaberUI::CreateText(rightNoteContainer->get_transform(), "Right Saber Colour!", Vector2(12.5f, -5.0f));
+    BeatSaberUI::CreateColorPicker(rightNoteContainer->get_transform(), "", colourScheme->get_saberBColor(), [colourScheme](Color value)
+    {   colourScheme->saberBColor = value;  });
 
-        BeatSaberUI::CreateColorPicker(bombContainer->get_transform(), "", getModConfig().BombColour.GetValue(), [&](Color value)
-        {   getModConfig().BombColour.SetValue(value);  });
+    BeatSaberUI::CreateText(bombContainer->get_transform(), "Bomb Colour!", Vector2(16.0f, -5.0f));
+    BeatSaberUI::CreateColorPicker(bombContainer->get_transform(), "", getModConfig().BombColour.GetValue(), [&](Color value)
+    {   getModConfig().BombColour.SetValue(value);  });
 
-        BeatSaberUI::CreateColorPicker(wallContainer->get_transform(), "", colourScheme->get_obstaclesColor(), [colourScheme](Color value)
-        {   colourScheme->obstaclesColor = value;  });
+    BeatSaberUI::CreateText(wallContainer->get_transform(), "Wall Colour!", Vector2(16.0f, -5.0f));
+    BeatSaberUI::CreateColorPicker(wallContainer->get_transform(), "", colourScheme->get_obstaclesColor(), [colourScheme](Color value)
+    {   colourScheme->obstaclesColor = value;  });
 
-        firstActivation = false;
-    }
-
-    if (!firstActivation)
-        leftNoteContainer->SetActive(true);
-        rightNoteContainer->SetActive(true);
-        bombContainer->SetActive(true);
-        wallContainer->SetActive(true);
-}
-
-MAKE_AUTO_HOOK_MATCH(Pause_BeatEffectSpawner_Start, &BeatEffectSpawner::Start, void, BeatEffectSpawner *self)
-{
-    firstActivation = true;
+    leftNoteContainer->SetActive(false);
+    rightNoteContainer->SetActive(false);
+    bombContainer->SetActive(false);
+    wallContainer->SetActive(false);
 }
