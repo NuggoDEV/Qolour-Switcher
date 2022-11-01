@@ -1,22 +1,13 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Lauriethefish/QuestPatcher.QMod/main/QuestPatcher.QMod/Resources/qmod.schema.json",
   "_QPVersion": "0.1.1",
   "name": "Qolour Switcher",
   "id": "QolourSwitcher",
   "author": "Nuggo#9535",
   "version": "1.2.0",
-  "packageId": "com.beatgames.beatsaber",
-  "packageVersion": "1.25.1",
   "description": "Allows user to change colours mid-game!",
-  "dependencies": [
-    {
-      "id": "Chroma",
-      "version": "2.7.0",
-      "downloadIfMissing": "https://github.com/bsq-ports/Chroma/releases/download/v2.7.0/chroma.qmod"
-    }
-  ],
+  "dependencies": [],
   "modFiles": [],
   "libraryFiles": [],
   "fileCopies": [],
-  "coverImage": "cover.png"
+  "copyExtensions": []
 }

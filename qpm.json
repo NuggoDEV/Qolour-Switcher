@@ -23,12 +23,12 @@
     },
     {
       "id": "custom-types",
-      "versionRange": "=0.15.21",
+      "versionRange": "^0.15.21",
       "additionalData": {}
     },
     {
       "id": "codegen",
-      "versionRange": "=0.28.0",
+      "versionRange": "^0.28.0",
       "additionalData": {}
     },
     {
@@ -38,7 +38,7 @@
     },
     {
       "id": "beatsaber-hook",
-      "versionRange": "=3.14.0",
+      "versionRange": "^3.14.0",
       "additionalData": {}
     },
     {
