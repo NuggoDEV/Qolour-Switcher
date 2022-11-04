@@ -17,6 +17,11 @@ using namespace UnityEngine;
 #include "questui/shared/BeatSaberUI.hpp"
 using namespace QuestUI;
 
+#include "chroma/shared/BombAPI.hpp"
+#include "chroma/shared/NoteAPI.hpp"
+#include "chroma/shared/ObstacleAPI.hpp"
+using namespace Chroma;
+
 GameObject *leftNoteContainer;
 GameObject *rightNoteContainer;
 GameObject *bombContainer;
@@ -59,19 +64,31 @@ MAKE_AUTO_HOOK_MATCH(Pause_GameplayCoreInstaller_InstallBindings, &GameplayCoreI
 
     BeatSaberUI::CreateText(leftNoteContainer->get_transform(), "Left Saber Colour!", Vector2(13.5f, -5.0f));
     BeatSaberUI::CreateColorPicker(leftNoteContainer->get_transform(), "", colourScheme->get_saberAColor(), [colourScheme](Color value)
-    {   colourScheme->saberAColor = value;  });
+    {   
+        colourScheme->saberAColor = value;
+        NoteAPI::setGlobalNoteColorSafe(value, colourScheme->saberBColor);
+    });
 
     BeatSaberUI::CreateText(rightNoteContainer->get_transform(), "Right Saber Colour!", Vector2(12.5f, -5.0f));
     BeatSaberUI::CreateColorPicker(rightNoteContainer->get_transform(), "", colourScheme->get_saberBColor(), [colourScheme](Color value)
-    {   colourScheme->saberBColor = value;  });
+    {   
+        colourScheme->saberBColor = value;
+        NoteAPI::setGlobalNoteColorSafe(colourScheme->saberAColor, value);
+    });
 
     BeatSaberUI::CreateText(bombContainer->get_transform(), "Bomb Colour!", Vector2(16.0f, -5.0f));
     BeatSaberUI::CreateColorPicker(bombContainer->get_transform(), "", getModConfig().BombColour.GetValue(), [&](Color value)
-    {   getModConfig().BombColour.SetValue(value);  });
+    {   
+        getModConfig().BombColour.SetValue(value);
+        BombAPI::setGlobalBombColorSafe(value);
+    });
 
     BeatSaberUI::CreateText(wallContainer->get_transform(), "Wall Colour!", Vector2(16.0f, -5.0f));
     BeatSaberUI::CreateColorPicker(wallContainer->get_transform(), "", colourScheme->get_obstaclesColor(), [colourScheme](Color value)
-    {   colourScheme->obstaclesColor = value;  });
+    {   
+        colourScheme->obstaclesColor = value;
+        ObstacleAPI::setAllObstacleColorSafe(value);
+    });
 
     leftNoteContainer->SetActive(false);
     rightNoteContainer->SetActive(false);
