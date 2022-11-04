@@ -18,20 +18,6 @@ using namespace GlobalNamespace;
 using namespace Chroma;
 
 
-MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ContinueButtonPressed, &PauseMenuManager::ContinueButtonPressed, void, PauseMenuManager *self)
-{
-    PauseMenuManager_ContinueButtonPressed(self);
-
-    auto playerDataModel = Object::FindObjectOfType<PlayerDataModel *>();
-    auto playerData = playerDataModel->playerData;
-    auto colourScheme = playerData->colorSchemesSettings->GetColorSchemeForId(playerData->colorSchemesSettings->selectedColorSchemeId);
-
-    BombAPI::setGlobalBombColorSafe(getModConfig().BombColour.GetValue());
-    NoteAPI::setGlobalNoteColorSafe(colourScheme->saberAColor, colourScheme->saberBColor);
-    ObstacleAPI::setAllObstacleColorSafe(colourScheme->obstaclesColor);
-}
-
-
 MAKE_AUTO_HOOK_MATCH(GameplayCoreInstaller_InstallBindings, &GameplayCoreInstaller::InstallBindings, void, GameplayCoreInstaller *self)
 {
     GameplayCoreInstaller_InstallBindings(self);
