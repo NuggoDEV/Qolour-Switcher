@@ -1,7 +1,7 @@
 #include "main.hpp"
 #include "ModConfig.hpp"
 #include "Hooks.hpp"
-#include "ExtraThings.hpp"
+
 
 #include "questui/shared/BeatSaberUI.hpp"
 using namespace QuestUI;
@@ -18,8 +18,8 @@ using namespace UnityEngine;
 
 
 
-//#define STATIC_AUTO(name, definition) \
-//static auto& name = ResettableStaticPtr::registerPointer(definition); \
+//#define STATIC_AUTO(name, definition) 
+//static auto& name = ResettableStaticPtr::registerPointer(definition); 
 //if(!name) name = definition;
 //
 //template<class T>
