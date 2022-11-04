@@ -15,27 +15,27 @@ DECLARE_CONFIG(ModConfig,
     CONFIG_VALUE(BombStart, Color, "Bomb Level Start Value", Color(0.1, 0.1, 0.1, 1));
     CONFIG_VALUE(WallStart, Color, "Wall Level Start Value", Color(0.7, 0, 0, 1));
 
-    CONFIG_VALUE(TimedSwitch1, bool, "a", false);
-    CONFIG_VALUE(TimedSwitch2, bool, "b", false);
-    CONFIG_VALUE(TimedSwitch3, bool, "c", false);
-    CONFIG_VALUE(TimedSwitch4, bool, "d", false);
+    CONFIG_VALUE(TimedSwitch1, bool, "First Timed Switch Toggle", false);
+    CONFIG_VALUE(TimedSwitch2, bool, "Second Timed Switch Toggle", false);
+    CONFIG_VALUE(TimedSwitch3, bool, "Third Timed Switch Toggle", false);
+    CONFIG_VALUE(TimedSwitch4, bool, "Fourth Timed Switch Toggle", false);
 
-    CONFIG_VALUE(TimedSwitch1Int, int, "e", 0);
-    CONFIG_VALUE(TimedSwitch2Int, int, "f", 120);
-    CONFIG_VALUE(TimedSwitch3Int, int, "g", 240);
-    CONFIG_VALUE(TimedSwitch4Int, int, "h", 360);
+    CONFIG_VALUE(TimedSwitch1Int, int, "First Timed Switch Time", 0);
+    CONFIG_VALUE(TimedSwitch2Int, int, "Second Timed Switch Time", 0);
+    CONFIG_VALUE(TimedSwitch3Int, int, "Third Timed Switch Time", 0);
+    CONFIG_VALUE(TimedSwitch4Int, int, "Fourth Timed Switch Time", 0);
 
-    CONFIG_VALUE(TimedSwitch1LNColour, Color, "i", Color(0.1, 0.1, 0.1, 1));
-    CONFIG_VALUE(TimedSwitch1RNColour, Color, "j", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch1LNColour, Color, "First Left Note Colour", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch1RNColour, Color, "First Right Note Colour", Color(0.1, 0.1, 0.1, 1));
 
-    CONFIG_VALUE(TimedSwitch2LNColour, Color, "m", Color(0.1, 0.1, 0.1, 1));
-    CONFIG_VALUE(TimedSwitch2RNColour, Color, "n", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch2LNColour, Color, "Second Left Note Colour", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch2RNColour, Color, "Second Right Note Colour", Color(0.1, 0.1, 0.1, 1));
 
-    CONFIG_VALUE(TimedSwitch3LNColour, Color, "q", Color(0.1, 0.1, 0.1, 1));
-    CONFIG_VALUE(TimedSwitch3RNColour, Color, "r", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch3LNColour, Color, "Third Left Note Colour", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch3RNColour, Color, "Third Right Note Colour", Color(0.1, 0.1, 0.1, 1));
 
-    CONFIG_VALUE(TimedSwitch4LNColour, Color, "u", Color(0.1, 0.1, 0.1, 1));
-    CONFIG_VALUE(TimedSwitch4RNColour, Color, "v", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch4LNColour, Color, "Fourth Left Note Colour", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(TimedSwitch4RNColour, Color, "Fourth Right Note Colour", Color(0.1, 0.1, 0.1, 1));
     
     CONFIG_INIT_FUNCTION(
         CONFIG_INIT_VALUE(DidUserCrash);
