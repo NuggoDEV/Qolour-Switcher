@@ -47,7 +47,7 @@ std::string SecondsToString(float value)
     std::string minuteStr = std::to_string(minutes);
     std::string secondStr = std::to_string(seconds);
 
-    return minuteStr + ":" + secondStr;
+    return minuteStr + "m :" + secondStr + "s";
 }
 
 
@@ -121,37 +121,33 @@ void QolourSwitcherUI::DidActivate(bool firstActivation, bool addedToHierarchy, 
         auto slider1 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "First", 1, ts1, 0, 120, Vector2(0.0f, -0.0f), [](int value)
         {   getModConfig().TimedSwitch1Int.SetValue(value);    });
         slider1->FormatString = std::move(SecondsToString);
-        //slider1->get_transform()->Find("Content")->GetComponent<TextMeshProUGUI *>()->set_fontSize(15.0f);
 
         auto slider2 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "Second", 1, ts2, ts1, 240, Vector2(0.0f, -18.3f), [](int value)
         {   getModConfig().TimedSwitch2Int.SetValue(value);    });
         slider2->FormatString = std::move(SecondsToString);
-        //slider2->get_transform()->Find("Content")->GetComponent<TextMeshProUGUI *>()->set_fontSize(15.0f);
-
+        
         auto slider3 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "Third", 1, ts3, ts2, 360, Vector2(0.0f, -34.8f), [](int value)
         {   getModConfig().TimedSwitch3Int.SetValue(value);    });
         slider3->FormatString = std::move(SecondsToString);
-        //slider3->get_transform()->Find("Content")->GetComponent<TextMeshProUGUI *>()->set_fontSize(15.0f);
-
+        
         auto slider4 = BeatSaberUI::CreateSliderSetting(rightFloatingContainer->get_transform(), "Fourth", 1, ts4, ts3, 480, Vector2(0.0f, -50.3f), [](int value)
         {   getModConfig().TimedSwitch4Int.SetValue(value);    });
         slider4->FormatString = std::move(SecondsToString);
-        //slider4->get_transform()->Find("Content")->GetComponent<TextMeshProUGUI *>()->set_fontSize(15.0f);
 
 
 
 
         firstLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.1f, 2.5f, 2.9f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-        firstRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 2.5f, 2.496f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        firstRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 2.5f, 2.55356f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
 
         secondLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.1f, 1.95f, 2.9f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-        secondRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 1.95f, 2.496f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        secondRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 1.95f, 2.55356f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
 
         thirdLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.1f, 1.48f, 2.9f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-        thirdRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 1.48f, 2.496f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        thirdRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 1.48f, 2.55356f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
 
         fourthLeftNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.1f, 1.0f, 2.9f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
-        fourthRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 1.0f, 2.496f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
+        fourthRightNoteFloatingContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(2.7f, 1.0f, 2.55356f), Vector3(0.0f, 30.0f, 0.0f), 0.0f, false, false);
 
 
         // First colour pickers
