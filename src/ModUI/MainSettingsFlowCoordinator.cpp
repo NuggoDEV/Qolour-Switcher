@@ -14,12 +14,14 @@ void SettingsFlowCoordinator::DidActivate(bool firstActivation, bool addedToHier
 {
     if (firstActivation)
     {
-        SetTitle("Qolour Switcher", HMUI::ViewController::AnimationType::Out);
+        SetTitle("Main Settings", HMUI::ViewController::AnimationType::Out);
 
         showBackButton = true;
 
         settingsViewController = QuestUI::BeatSaberUI::CreateViewController<QolourSwitcher::Views::MainSettingsViewController *>();
         timedSettingsViewController = QuestUI::BeatSaberUI::CreateViewController<QolourSwitcher::Views::TimedSettingsViewController *>();
+
+        currentViewController = nullptr;
 
         ProvideInitialViewControllers(settingsViewController, timedSettingsViewController, nullptr, nullptr, nullptr);
     }
@@ -28,4 +30,16 @@ void SettingsFlowCoordinator::DidActivate(bool firstActivation, bool addedToHier
 void SettingsFlowCoordinator::BackButtonWasPressed(HMUI::ViewController *topViewController)
 {
     parentFlowCoordinator->DismissFlowCoordinator(this, HMUI::ViewController::AnimationDirection::Horizontal, nullptr, false);
+
+    if (currentViewController)
+    {
+        SetTitle("Timed Switches", HMUI::ViewController::AnimationType::In);
+        ReplaceTopViewController(settingsViewController, this, this, nullptr, HMUI::ViewController::AnimationType::Out, HMUI::ViewController::AnimationDirection::Horizontal);
+
+        currentViewController = nullptr;
+    }
+    else
+    {
+        parentFlowCoordinator->DismissFlowCoordinator(this, HMUI::ViewController::AnimationDirection::Horizontal, nullptr, false);
+    }
 }

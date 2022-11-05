@@ -13,6 +13,7 @@
 DECLARE_CLASS_CODEGEN(QolourSwitcherUI, SettingsFlowCoordinator, HMUI::FlowCoordinator,
     DECLARE_INSTANCE_FIELD(QolourSwitcher::Views::MainSettingsViewController*, settingsViewController);
     DECLARE_INSTANCE_FIELD(QolourSwitcher::Views::TimedSettingsViewController*, timedSettingsViewController);
+    DECLARE_INSTANCE_FIELD(HMUI::ViewController*, currentViewController);
 
     DECLARE_OVERRIDE_METHOD(void, DidActivate, GET_FIND_METHOD(&HMUI::ViewController::DidActivate), bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling);
     DECLARE_OVERRIDE_METHOD(void, BackButtonWasPressed, GET_FIND_METHOD(&HMUI::FlowCoordinator::BackButtonWasPressed), HMUI::ViewController* topViewController);

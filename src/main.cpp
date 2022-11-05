@@ -3,6 +3,7 @@
 #include "ModConfig.hpp"
 
 #include "ModUI/MainSettingsViewController.hpp"
+#include "ModUI/FlowCoordinator.hpp"
 using namespace QolourSwitcher;
 
 #include "questui/shared/QuestUI.hpp"
@@ -42,10 +43,13 @@ extern "C" void setup(ModInfo& info) {
 extern "C" void load() {
     il2cpp_functions::Init();
 
+    custom_types::Register::AutoRegister();
+
     getLogger().info("Loading Qolour Switcher UI & Config");
     getModConfig().Init(modInfo);
     QuestUI::Init();
     QuestUI::Register::RegisterMainMenuModSettingsViewController<QolourSwitcher::Views::MainSettingsViewController *>(modInfo, "Qolour Switcher");
+    //QuestUI::Register::RegisterMainMenuModSettingsFlowCoordinator<QolourSwitcherUI::SettingsFlowCoordinator *>(modInfo);
     getLogger().info("Successfully loaded Qolour Switcher UI & Config!");
 
     getLogger().info("Installing Qolour Switcher Hooks");
