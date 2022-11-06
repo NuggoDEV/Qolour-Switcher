@@ -5,9 +5,13 @@
 #include "custom-types/shared/register.hpp"
 
 #include "HMUI/ViewController.hpp"
+#include "HMUI/FlowCoordinator.hpp"
+
+#include "UnityEngine/UI/Button.hpp"
+
 
 DECLARE_CLASS_CODEGEN(QolourSwitcher::UI, QolourSwitcherViewController, HMUI::ViewController,
-    DECLARE_INSTANCE_FIELD(HMUI::FlowCoordinator, flowCoordinator);
+    DECLARE_INSTANCE_FIELD(HMUI::FlowCoordinator*, flowCoordinator);
 
     DECLARE_INSTANCE_FIELD(UnityEngine::UI::Button*, mainSettingsButton);
     DECLARE_INSTANCE_FIELD(UnityEngine::UI::Button*, timedSettingsButton);
