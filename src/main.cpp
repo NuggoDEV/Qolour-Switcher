@@ -2,8 +2,8 @@
 #include "Hooks.hpp"
 #include "ModConfig.hpp"
 
-//#include "ModUI/QolourSwitcherFlowCoordinator.hpp"
 #include "ModUI/QolourSwitcherViewController.hpp"
+#include "ModUI/QolourSwitcherFlowCoordinator.hpp"
 
 #include "questui/shared/QuestUI.hpp"
 using namespace QuestUI;
@@ -47,8 +47,8 @@ extern "C" void load() {
     getModConfig().Init(modInfo);
 
     QuestUI::Init();
-    QuestUI::Register::RegisterMainMenuModSettingsViewController<QolourSwitcher::UI::QolourSwitcherViewController *>(modInfo, "Qolour Switcher");
-    //QuestUI::Register::RegisterMainMenuModSettingsFlowCoordinator<QolourSwitcher::UI::QolourSwitcherFlowCoordinator *>(modInfo);
+    //QuestUI::Register::RegisterMainMenuModSettingsViewController<QolourSwitcher::UI::QolourSwitcherSettingsViewController *>(modInfo, "Qolour Switcher");
+    QuestUI::Register::RegisterMainMenuModSettingsFlowCoordinator<QolourSwitcher::UI::QolourSwitcherFlowCoordinator *>(modInfo, "Qolour Switcher");
 
     getLogger().info("Successfully loaded Qolour Switcher UI & Config!");
 

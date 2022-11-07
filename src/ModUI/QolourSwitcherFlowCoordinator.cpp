@@ -1,9 +1,12 @@
-#include "main.hpp"
 #include "ModUI/QolourSwitcherFlowCoordinator.hpp"
+#include "ModUI/TimedSettingsViewController.hpp"
+#include "ModUI/QolourSwitcherViewController.hpp"
 
-#include "GlobalNamespace/MenuTransitionsHelper.hpp"
 #include "HMUI/ViewController_AnimationDirection.hpp"
 #include "HMUI/ViewController_AnimationType.hpp"
+
+#include "questui/shared/BeatSaberUI.hpp"
+using namespace QuestUI;
 
 DEFINE_TYPE(QolourSwitcher::UI, QolourSwitcherFlowCoordinator);
 
@@ -11,28 +14,18 @@ void QolourSwitcher::UI::QolourSwitcherFlowCoordinator::DidActivate(bool firstAc
 {
     if (firstActivation)
     {
-        SetTitle("Qolour Switcher axscds", HMUI::ViewController::AnimationType::Out);
+        timedSettingsViewController = BeatSaberUI::CreateViewController<QolourSwitcher::UI::TimedSettingsViewController *>();
+        //reinterpret_cast<QolourSwitcher::UI::TimedSettingsViewController *>(timedSettingsViewController)->;
+        mainSettingsViewController = BeatSaberUI::CreateViewController<QolourSwitcher::UI::QolourSwitcherSettingsViewController *>();
 
         showBackButton = true;
 
-        qolourSwitcherViewController = QuestUI::BeatSaberUI::CreateViewController<QolourSwitcher::UI::QolourSwitcherViewController *>();
-        qolourSwitcherViewController->flowCoordinator = this;
-
-        currentViewController = nullptr;
-
-        ProvideInitialViewControllers(qolourSwitcherViewController, nullptr, nullptr, nullptr, nullptr);
+        ProvideInitialViewControllers(mainSettingsViewController, timedSettingsViewController, nullptr, nullptr, nullptr);
+        SetTitle("Main Qolour Switcher Settings", HMUI::ViewController::AnimationType::In);
     }
 }
 
 void QolourSwitcher::UI::QolourSwitcherFlowCoordinator::BackButtonWasPressed(HMUI::ViewController *topViewController)
 {
-    if (currentViewController)
-    {
-        SetTitle("VFJOFFGER", HMUI::ViewController::AnimationType::In);
-        ReplaceTopViewController(qolourSwitcherViewController, this, this, nullptr, HMUI::ViewController::AnimationType::Out, HMUI::ViewController::AnimationDirection::Horizontal);
-
-        currentViewController = nullptr;
-
-        parentFlowCoordinator->DismissFlowCoordinator(this, HMUI::ViewController::AnimationDirection::Horizontal, nullptr, false);
-    }
+    this->parentFlowCoordinator->DismissFlowCoordinator(this, HMUI::ViewController::AnimationDirection::Horizontal, nullptr, false);
 }

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "custom-types/shared/macros.hpp"
-#include "custom-types/shared/register.hpp"
-#include "questui/shared/BeatSaberUI.hpp"
-#include "questui/shared/QuestUI.hpp"
+#include "main.hpp"
 
 #include "HMUI/ViewController.hpp"
+#include "TMPro/TextMeshProUGUI.hpp"
+#include "UnityEngine/GameObject.hpp"
+#include "custom-types/shared/macros.hpp"
+
 
 DECLARE_CLASS_CODEGEN(QolourSwitcher::UI, TimedSettingsViewController, HMUI::ViewController,
     DECLARE_OVERRIDE_METHOD(void, DidActivate, il2cpp_utils::FindMethodUnsafe("HMUI", "ViewController", "DidActivate", 3), bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling);
-
 )
