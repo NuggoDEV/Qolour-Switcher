@@ -1,4 +1,5 @@
 #include "ModUI/QolourSwitcherViewController.hpp"
+#include "ModConfig.hpp"
 
 #include "questui/shared/BeatSaberUI.hpp"
 using namespace QuestUI;
@@ -20,7 +21,26 @@ void QolourSwitcher::UI::QolourSwitcherSettingsViewController::DidActivate(bool 
 
     if (firstActivation)
     {
-        auto a = BeatSaberUI::CreateScrollView(get_transform());
-        BeatSaberUI::CreateText(a->get_transform(), "JFEUSROIJHGFDKULHGFDKGHFKDSJGHFSDLKJGHSL");
+        auto container = BeatSaberUI::CreateScrollView(get_transform());
+        
+        BeatSaberUI::CreateColorPicker(container->get_transform(), "Left Saber Colour", colourScheme->get_saberAColor(), [colourScheme](UnityEngine::Color value)
+        {
+            colourScheme->saberAColor = value;
+        });
+
+        BeatSaberUI::CreateColorPicker(container->get_transform(), "Right Saber Colour", colourScheme->get_saberBColor(), [colourScheme](UnityEngine::Color value)
+        {
+            colourScheme->saberBColor = value;
+        });
+
+        BeatSaberUI::CreateColorPicker(container->get_transform(), "Bomb Colour", getModConfig().BombColour.GetValue(), [colourScheme](UnityEngine::Color value)
+        {
+            getModConfig().BombColour.SetValue(value);
+        });
+
+        BeatSaberUI::CreateColorPicker(container->get_transform(), "Wall Colour", colourScheme->get_obstaclesColor(), [colourScheme](UnityEngine::Color value)
+        {
+            colourScheme->obstaclesColor = value;
+        });
     }
 }

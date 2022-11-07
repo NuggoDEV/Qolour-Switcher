@@ -1,5 +1,4 @@
 #include "ModUI/QolourSwitcherFlowCoordinator.hpp"
-#include "ModUI/TimedSettingsViewController.hpp"
 #include "ModUI/QolourSwitcherViewController.hpp"
 
 #include "HMUI/ViewController_AnimationDirection.hpp"
@@ -15,13 +14,13 @@ void QolourSwitcher::UI::QolourSwitcherFlowCoordinator::DidActivate(bool firstAc
     if (firstActivation)
     {
         timedSettingsViewController = BeatSaberUI::CreateViewController<QolourSwitcher::UI::TimedSettingsViewController *>();
-        //reinterpret_cast<QolourSwitcher::UI::TimedSettingsViewController *>(timedSettingsViewController)->;
         mainSettingsViewController = BeatSaberUI::CreateViewController<QolourSwitcher::UI::QolourSwitcherSettingsViewController *>();
+        toggleSettingsViewController = BeatSaberUI::CreateViewController<QolourSwitcher::UI::ToggleSettingsViewController *>();
 
         showBackButton = true;
 
-        ProvideInitialViewControllers(mainSettingsViewController, timedSettingsViewController, nullptr, nullptr, nullptr);
-        SetTitle("Main Qolour Switcher Settings", HMUI::ViewController::AnimationType::In);
+        ProvideInitialViewControllers(mainSettingsViewController, toggleSettingsViewController, timedSettingsViewController, nullptr, nullptr);
+        SetTitle("Qolour Switcher Settings", HMUI::ViewController::AnimationType::In);
     }
 }
 
