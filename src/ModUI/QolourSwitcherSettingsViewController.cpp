@@ -21,7 +21,8 @@ void QolourSwitcher::UI::QolourSwitcherSettingsViewController::DidActivate(bool 
 
     if (firstActivation)
     {
-        auto container = BeatSaberUI::CreateScrollView(get_transform());
+        auto container = BeatSaberUI::CreateVerticalLayoutGroup(get_transform());
+        container->set_spacing(0.2f);
         
         BeatSaberUI::CreateColorPicker(container->get_transform(), "Left Saber Colour", colourScheme->get_saberAColor(), [colourScheme](UnityEngine::Color value)
         {

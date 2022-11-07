@@ -14,7 +14,7 @@ void QolourSwitcher::UI::ToggleSettingsViewController::DidActivate(bool firstAct
     if (firstActivation)
     {
         auto container = BeatSaberUI::CreateVerticalLayoutGroup(get_transform());
-        container->set_spacing(0.5f);
+        container->set_spacing(0.2f);
 
         TextMeshProUGUI *title = BeatSaberUI::CreateText(container->get_transform(), "Toggle Settings");
         title->set_fontSize(6.0f);
