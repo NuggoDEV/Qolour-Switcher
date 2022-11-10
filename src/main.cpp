@@ -47,7 +47,6 @@ extern "C" void load() {
     getModConfig().Init(modInfo);
 
     QuestUI::Init();
-    //QuestUI::Register::RegisterMainMenuModSettingsViewController<QolourSwitcher::UI::QolourSwitcherSettingsViewController *>(modInfo, "Qolour Switcher");
     QuestUI::Register::RegisterMainMenuModSettingsFlowCoordinator<QolourSwitcher::UI::QolourSwitcherFlowCoordinator *>(modInfo, "Qolour Switcher");
 
     getLogger().info("Successfully loaded Qolour Switcher UI & Config!");
