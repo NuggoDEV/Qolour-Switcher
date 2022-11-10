@@ -27,6 +27,8 @@ GameObject *rightNoteContainer;
 GameObject *bombContainer;
 GameObject *wallContainer;
 
+GameObject *test;
+
 bool firstActivation;
 
 MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, void, PauseMenuManager *self)
@@ -61,6 +63,9 @@ MAKE_AUTO_HOOK_MATCH(Pause_GameplayCoreInstaller_InstallBindings, &GameplayCoreI
     rightNoteContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(0.4f, 2.85f, 2.4f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, false, false);
     bombContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(-1.2f, 2.85f, 2.4f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, false, false);
     wallContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(1.2f, 2.85f, 2.4f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, false, false);
+
+    test = BeatSaberUI::CreateCanvas();
+    auto testB = BeatSaberUI::CreateHorizontalLayoutGroup(test->get_transform());
 
     BeatSaberUI::CreateText(leftNoteContainer->get_transform(), "Left Saber Colour!", Vector2(13.5f, -5.0f));
     BeatSaberUI::CreateColorPicker(leftNoteContainer->get_transform(), "", colourScheme->get_saberAColor(), [colourScheme](Color value)
