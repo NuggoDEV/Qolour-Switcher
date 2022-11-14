@@ -6,7 +6,7 @@
 using namespace UnityEngine;
 
 DECLARE_CONFIG(ModConfig, 
-    CONFIG_VALUE(DidUserCrash, bool, "If the user crashes before results screen", true);
+    CONFIG_VALUE(DidUserCrash, bool, "If the user crashes before results screen", false);
     CONFIG_VALUE(ColoursChanged, bool, "When a Colour Gets Changed", false);
     CONFIG_VALUE(BombColour, Color, "", Color(0.1, 0.1, 0.1, 0.5));
 
