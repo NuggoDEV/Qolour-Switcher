@@ -4,7 +4,7 @@
   "id": "QolourSwitcher",
   "author": "Nuggo#9535",
   "version": "1.2.0",
-  "description": "Allows user to change colours mid-game!",
+  "description": "Allows user full control over the colours of the notes, bombs, and walls!",
   "dependencies": [],
   "modFiles": [],
   "libraryFiles": [],
