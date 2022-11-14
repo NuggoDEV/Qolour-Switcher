@@ -27,8 +27,6 @@ GameObject *rightNoteContainer;
 GameObject *bombContainer;
 GameObject *wallContainer;
 
-GameObject *test;
-
 bool firstActivation;
 
 MAKE_AUTO_HOOK_MATCH(PauseMenuManager_ShowMenu, &PauseMenuManager::ShowMenu, void, PauseMenuManager *self)
@@ -64,14 +62,12 @@ MAKE_AUTO_HOOK_MATCH(Pause_GameplayCoreInstaller_InstallBindings, &GameplayCoreI
     bombContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(-1.2f, 2.85f, 2.4f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, false, false);
     wallContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(1.2f, 2.85f, 2.4f), Vector3(0.0f, 0.0f, 0.0f), 0.0f, false, false);
 
-    test = BeatSaberUI::CreateCanvas();
-    auto testB = BeatSaberUI::CreateHorizontalLayoutGroup(test->get_transform());
-
     BeatSaberUI::CreateText(leftNoteContainer->get_transform(), "Left Saber Colour!", Vector2(13.5f, -5.0f));
     BeatSaberUI::CreateColorPicker(leftNoteContainer->get_transform(), "", colourScheme->get_saberAColor(), [colourScheme](Color value)
     {   
         colourScheme->saberAColor = value;
         NoteAPI::setGlobalNoteColorSafe(value, colourScheme->saberBColor);
+        getModConfig().ColoursChanged.SetValue(true);
     });
 
     BeatSaberUI::CreateText(rightNoteContainer->get_transform(), "Right Saber Colour!", Vector2(12.5f, -5.0f));
@@ -79,6 +75,7 @@ MAKE_AUTO_HOOK_MATCH(Pause_GameplayCoreInstaller_InstallBindings, &GameplayCoreI
     {   
         colourScheme->saberBColor = value;
         NoteAPI::setGlobalNoteColorSafe(colourScheme->saberAColor, value);
+        getModConfig().ColoursChanged.SetValue(true);
     });
 
     BeatSaberUI::CreateText(bombContainer->get_transform(), "Bomb Colour!", Vector2(16.0f, -5.0f));
@@ -86,6 +83,7 @@ MAKE_AUTO_HOOK_MATCH(Pause_GameplayCoreInstaller_InstallBindings, &GameplayCoreI
     {   
         getModConfig().BombColour.SetValue(value);
         BombAPI::setGlobalBombColorSafe(value);
+        getModConfig().ColoursChanged.SetValue(true);
     });
 
     BeatSaberUI::CreateText(wallContainer->get_transform(), "Wall Colour!", Vector2(16.0f, -5.0f));
@@ -93,10 +91,18 @@ MAKE_AUTO_HOOK_MATCH(Pause_GameplayCoreInstaller_InstallBindings, &GameplayCoreI
     {   
         colourScheme->obstaclesColor = value;
         ObstacleAPI::setAllObstacleColorSafe(value);
+        getModConfig().ColoursChanged.SetValue(true);
     });
 
     leftNoteContainer->SetActive(false);
     rightNoteContainer->SetActive(false);
     bombContainer->SetActive(false);
     wallContainer->SetActive(false);
+}
+
+MAKE_AUTO_HOOK_MATCH(PauseMenuManager_MenuButtonPressed, &PauseMenuManager::MenuButtonPressed, void, PauseMenuManager *self)
+{
+    PauseMenuManager_MenuButtonPressed(self);
+
+    getModConfig().DidUserCrash.SetValue(false);
 }

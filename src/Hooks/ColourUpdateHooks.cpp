@@ -32,6 +32,8 @@ MAKE_AUTO_HOOK_MATCH(GameplayCoreInstaller_InstallBindings, &GameplayCoreInstall
     getModConfig().LeftStart.SetValue(colourScheme->get_saberAColor());
     getModConfig().RightStart.SetValue(colourScheme->get_saberBColor());
     getModConfig().WallStart.SetValue(colourScheme->get_obstaclesColor());
+
+    getModConfig().DidUserCrash.SetValue(true);
 }
 
 MAKE_AUTO_HOOK_MATCH(AudioTimeSyncController_Update, &AudioTimeSyncController::Update, void, AudioTimeSyncController *self)
