@@ -25,7 +25,7 @@ MAKE_AUTO_HOOK_MATCH(ResultsViewController_DidActivate, &ResultsViewController::
     auto playerData = playerDataModel->playerData;
     auto colourScheme = playerData->colorSchemesSettings->GetColorSchemeForId(playerData->colorSchemesSettings->selectedColorSchemeId);
 
-    if (firstActivation)
+    if (firstActivation && getModConfig().ColoursChanged.GetValue())
     {
         restoreContainer = BeatSaberUI::CreateFloatingScreen(Vector2(0.0f, 0.0f), Vector3(-0.75f, 0.3f, 4.0f), Vector3(35.0f, 0.0f, 0.0f), 0.0f, false, false);
 
@@ -35,14 +35,22 @@ MAKE_AUTO_HOOK_MATCH(ResultsViewController_DidActivate, &ResultsViewController::
             colourScheme->saberBColor = getModConfig().RightStart.GetValue();
             colourScheme->obstaclesColor = getModConfig().WallStart.GetValue();
             getModConfig().BombColour.SetValue(getModConfig().BombStart.GetValue());
+            getModConfig().ColoursChanged.SetValue(false);
+            restoreContainer->SetActive(false);
         });
     }
-    restoreContainer->SetActive(true);
+    if (getModConfig().ColoursChanged.GetValue())
+    {
+        restoreContainer->SetActive(true);
+    }
 }
 
 MAKE_AUTO_HOOK_MATCH(ResultsViewController_DidDeactivate, &ResultsViewController::DidDeactivate, void, ResultsViewController *self, bool removedFromHierarchy, bool screenSystemDisabling)
 {
     ResultsViewController_DidDeactivate(self, removedFromHierarchy, screenSystemDisabling);
 
-    restoreContainer->SetActive(false);
+    if (getModConfig().ColoursChanged.GetValue())
+    {
+        restoreContainer->SetActive(false);
+    }
 }

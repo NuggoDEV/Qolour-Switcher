@@ -16,42 +16,26 @@ using namespace GlobalNamespace;
 DEFINE_TYPE(QolourSwitcher::UI, TimedSettingsViewController);
 
 
-std::string SecondsToString(float value)
-{
-    int minutes = value / 60;
-    int seconds = value - minutes * 60;
-    std::string minuteStr = std::to_string(minutes);
-    std::string secondStr = std::to_string(seconds);
 
-    if (minutes == 0)
-    {
-        return secondStr + "s";
-    }
-    else
-    {
-        return minuteStr + "m :" + secondStr + "s";
-    }
-}
+//SliderSetting *testSlider(auto parent, float min, float max, float current, float increment, auto onChange)
+//{
+//    auto sliderCreated = BeatSaberUI::CreateSliderSetting(parent, "", 0, 0, 0, 0);
+//    SliderSetting *slider = sliderCreated->slider->get_gameObject()->template AddComponent<SliderSetting *>();
+//    slider->slider = sliderCreated->slider;
+//    //slider->FormatString = std::move(format);
+//    slider->Setup(min, max, current, increment, 0, onChange);
+//    auto transform = (RectTransform *) slider->slider->get_transform();
+//    auto obj = transform->GetParent()->get_gameObject();
+//    transform->SetParent(parent->get_transform(), false);
+//    transform->set_anchorMin({0.5, 0.5});
+//    transform->set_anchorMax({0.5, 0.5});
+//    transform->set_pivot({0.5, 0.5});
+//    UnityEngine::Object::Destroy(obj);
+//
+//    return slider;    
+//}
 
-SliderSetting *testSlider(auto parent, float min, float max, float current, float increment, auto onChange)
-{
-    auto sliderCreated = BeatSaberUI::CreateSliderSetting(parent, "", 0, 0, 0, 0);
-    SliderSetting *slider = sliderCreated->slider->get_gameObject()->template AddComponent<SliderSetting *>();
-    slider->slider = sliderCreated->slider;
-    //slider->FormatString = std::move(format);
-    slider->Setup(min, max, current, increment, 0, std::move(onChange));
-    auto transform = (RectTransform *) slider->slider->get_transform();
-    auto obj = transform->GetParent()->get_gameObject();
-    transform->SetParent(parent->get_transform(), false);
-    transform->set_anchorMin({0.5, 0.5});
-    transform->set_anchorMax({0.5, 0.5});
-    transform->set_pivot({0.5, 0.5});
-    UnityEngine::Object::Destroy(obj);
-
-    return slider;    
-}
-
-void SetTransform(auto obj, UnityEngine::Vector2 anchoredPos, UnityEngine::Vector2 sizeDelta) {
+void SetTransform(auto obj, Vector2 anchoredPos, Vector2 sizeDelta) {
     auto transform = (UnityEngine::RectTransform*) obj->get_transform();
     transform->set_anchoredPosition(anchoredPos);
     transform->set_sizeDelta(sizeDelta);
@@ -67,6 +51,8 @@ void QolourSwitcher::UI::TimedSettingsViewController::DidActivate(bool firstActi
 
     if (firstActivation)
     {
+        //auto vContainer = BeatSaberUI::CreateScrollableSettingsContainer(get_transform());
+        //vContainer->AddComponent<UnityEngine::UI::VerticalLayoutGroup *>();
         auto vContainer = BeatSaberUI::CreateVerticalLayoutGroup(get_transform());
         vContainer->set_spacing(0.1f);
 
@@ -75,7 +61,7 @@ void QolourSwitcher::UI::TimedSettingsViewController::DidActivate(bool firstActi
         auto hContainer = BeatSaberUI::CreateHorizontalLayoutGroup(vContainer->get_transform());
         hContainer->set_childAlignment(TextAlignmentOptions::Center);
 
-        TextMeshProUGUI *title = BeatSaberUI::CreateText(vContainer->get_transform(), "Timed Settings");
+        TextMeshProUGUI *title = BeatSaberUI::CreateText(vContainer->get_transform(), "Timed Switches Settings");
         title->set_fontSize(6.0f);
         title->set_alignment(TextAlignmentOptions::Center);
 
@@ -85,11 +71,11 @@ void QolourSwitcher::UI::TimedSettingsViewController::DidActivate(bool firstActi
         text1->set_fontSize(4.0f);
         text1->set_alignment(TextAlignmentOptions::Center);
 
-        auto slider1 = BeatSaberUI::CreateSliderSetting(vContainer->get_transform(), "", 1, getModConfig().TimedSwitch1Int.GetValue(), 1, 120, [&](int value)
-        {   
-            getModConfig().TimedSwitch1Int.SetValue(value);
-        });
-        slider1->FormatString = SecondsToString;
+        //auto slider1 = BeatSaberUI::CreateSliderSetting(vContainer->get_transform(), "First Switch", 1, getModConfig().TimedSwitch1Int.GetValue(), 1, 120, [&](int value)
+        //{   
+        //    getModConfig().TimedSwitch1Int.SetValue(value);
+        //});
+        //slider1->FormatString = SecondsToString;
 
         BeatSaberUI::CreateColorPicker(vContainer->get_transform(), "Left Saber Colour", getModConfig().TimedSwitch1LNColour.GetValue(), [](Color value)
         {
@@ -107,17 +93,10 @@ void QolourSwitcher::UI::TimedSettingsViewController::DidActivate(bool firstActi
         text2->set_fontSize(4.0f);
         text2->set_alignment(TextAlignmentOptions::Center);
 
-        //auto slidr2 = TextlessSlider(vContainer, 0, 120, getModConfig().TimedSwitch2Int.GetValue(), 1, 1, [](float time) { return SecondsToString(time); });
-        //SetTransform(slidr2, {0, 0}, {70, 10});
-        //auto slider2 = BeatSaberUI::CreateSliderSetting(vContainer->get_transform(), "", 1, getModConfig().TimedSwitch2Int.GetValue(), getModConfig().TimedSwitch1Int.GetValue(), 240, [&](int value)
+        //auto slider2 = BeatSaberUI::CreateSliderSetting(vContainer->get_transform(), "Second Switch", 1, getModConfig().TimedSwitch2Int.GetValue(), getModConfig().TimedSwitch1Int.GetValue(), 240, [&](int value)
         //{   getModConfig().TimedSwitch2Int.SetValue(value);   });
-        //slider2->FormatString = std::move(SecondsToString);
-        auto slidr2 = testSlider(vContainer->get_transform(), 0, 120, getModConfig().TimedSwitch2Int.GetValue(), 1, [](int value)
-        {
-            getModConfig().TimedSwitch2Int.SetValue(value);
-        });
-        SetTransform(slidr2, {0, 0}, {70, 10});
-        slidr2->FormatString = SecondsToString;
+        //slider2->FormatString = SecondsToString;
+
 
 
         BeatSaberUI::CreateColorPicker(vContainer->get_transform(), "Left Saber Colour", getModConfig().TimedSwitch2LNColour.GetValue(), [](Color value)
@@ -136,9 +115,9 @@ void QolourSwitcher::UI::TimedSettingsViewController::DidActivate(bool firstActi
         text3->set_fontSize(4.0f);
         text3->set_alignment(TextAlignmentOptions::Center);
 
-        auto slider3 = BeatSaberUI::CreateSliderSetting(vContainer->get_transform(), "", 1, getModConfig().TimedSwitch3Int.GetValue(), getModConfig().TimedSwitch2Int.GetValue(), 360, [&](int value)
-        {   getModConfig().TimedSwitch3Int.SetValue(value);   });
-        slider3->FormatString = SecondsToString;
+        //auto slider3 = BeatSaberUI::CreateSliderSetting(vContainer->get_transform(), "Third Switch", 1, getModConfig().TimedSwitch3Int.GetValue(), getModConfig().TimedSwitch2Int.GetValue(), 360, [&](int value)
+        //{   getModConfig().TimedSwitch3Int.SetValue(value);   });
+        //slider3->FormatString = SecondsToString;
 
         BeatSaberUI::CreateColorPicker(vContainer->get_transform(), "Left Saber Colour", getModConfig().TimedSwitch3LNColour.GetValue(), [](Color value)
         {
@@ -156,9 +135,9 @@ void QolourSwitcher::UI::TimedSettingsViewController::DidActivate(bool firstActi
         text4->set_fontSize(4.0f);
         text4->set_alignment(TextAlignmentOptions::Center);
 
-        auto slider4 = BeatSaberUI::CreateSliderSetting(vContainer->get_transform(), "", 1, getModConfig().TimedSwitch4Int.GetValue(), getModConfig().TimedSwitch3Int.GetValue(), 480, [&](int value)
-        {   getModConfig().TimedSwitch4Int.SetValue(value);   });
-        slider4->FormatString = SecondsToString;
+        //auto slider4 = BeatSaberUI::CreateSliderSetting(vContainer->get_transform(), "Fourth Switch", 1, getModConfig().TimedSwitch4Int.GetValue(), getModConfig().TimedSwitch3Int.GetValue(), 480, [&](int value)
+        //{   getModConfig().TimedSwitch4Int.SetValue(value);   });
+        //slider4->FormatString = SecondsToString;
 
         BeatSaberUI::CreateColorPicker(vContainer->get_transform(), "Left Saber Colour", getModConfig().TimedSwitch4LNColour.GetValue(), [](Color value)
         {
