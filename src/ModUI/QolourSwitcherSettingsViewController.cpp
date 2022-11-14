@@ -4,6 +4,11 @@
 #include "questui/shared/BeatSaberUI.hpp"
 using namespace QuestUI;
 
+#include "assets.hpp"
+
+#include "bsml/shared/BSML.hpp"
+using namespace BSML;
+
 #include "GlobalNamespace/PlayerDataModel.hpp"
 #include "GlobalNamespace/PlayerData.hpp"
 #include "GlobalNamespace/ColorScheme.hpp"
@@ -21,27 +26,9 @@ void QolourSwitcher::UI::QolourSwitcherSettingsViewController::DidActivate(bool 
 
     if (firstActivation)
     {
-        auto container = BeatSaberUI::CreateScrollableSettingsContainer(get_transform());
-        //container->set_spacing(0.2f);
+        auto parser = BSMLParser::parse(IncludedAssets::MainSettings_bsml);
+        parser->Construct(get_transform(), this);
+
         
-        BeatSaberUI::CreateColorPicker(container->get_transform(), "Left Saber Colour", colourScheme->get_saberAColor(), [colourScheme](UnityEngine::Color value)
-        {
-            colourScheme->saberAColor = value;
-        });
-
-        BeatSaberUI::CreateColorPicker(container->get_transform(), "Right Saber Colour", colourScheme->get_saberBColor(), [colourScheme](UnityEngine::Color value)
-        {
-            colourScheme->saberBColor = value;
-        });
-
-        BeatSaberUI::CreateColorPicker(container->get_transform(), "Bomb Colour", getModConfig().BombColour.GetValue(), [colourScheme](UnityEngine::Color value)
-        {
-            getModConfig().BombColour.SetValue(value);
-        });
-
-        BeatSaberUI::CreateColorPicker(container->get_transform(), "Wall Colour", colourScheme->get_obstaclesColor(), [colourScheme](UnityEngine::Color value)
-        {
-            colourScheme->obstaclesColor = value;
-        });
     }
 }
