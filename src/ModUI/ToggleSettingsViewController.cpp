@@ -4,6 +4,10 @@
 #include "questui/shared/BeatSaberUI.hpp"
 using namespace QuestUI;
 
+#include "assets.hpp"
+#include "bsml/shared/BSML.hpp"
+using namespace BSML;
+
 #include "TMPro/TextMeshProUGUI.hpp"
 using namespace TMPro;
 
@@ -34,69 +38,7 @@ void QolourSwitcher::UI::ToggleSettingsViewController::DidActivate(bool firstAct
 {
     if (firstActivation)
     {        
-        auto container = BeatSaberUI::CreateVerticalLayoutGroup(get_transform());
-        //container->
-
-        TextMeshProUGUI *title = BeatSaberUI::CreateText(container->get_transform(), "Toggle + Time Settings");
-        title->set_fontSize(6.0f);
-        title->set_alignment(TextAlignmentOptions::Center);
-
-
-        auto text1 = BeatSaberUI::CreateText(container->get_transform(), "First Timed Setting");
-        text1->set_fontSize(4.0f);
-        text1->set_alignment(TextAlignmentOptions::Center);
-
-        BeatSaberUI::CreateToggle(container->get_transform(), "Enable First Timed Switch", getModConfig().TimedSwitch1.GetValue(), [](bool value)
-        {
-            getModConfig().TimedSwitch1.SetValue(value);
-        });
-
-        auto slider1 = BeatSaberUI::CreateSliderSetting(container->get_transform(), "First Timed Switch", 1, getModConfig().TimedSwitch1Int.GetValue(), 1, 120, [&](int value)
-        {   
-            getModConfig().TimedSwitch1Int.SetValue(value);
-        });
-        slider1->FormatString = SecondsToString;
-
-        auto text2 = BeatSaberUI::CreateText(container->get_transform(), "Second Timed Setting");
-        text2->set_fontSize(4.0f);
-        text2->set_alignment(TextAlignmentOptions::Center);
-
-
-        BeatSaberUI::CreateToggle(container->get_transform(), "Enable Second Timed Switch", getModConfig().TimedSwitch2.GetValue(), [](bool value)
-        {
-            getModConfig().TimedSwitch2.SetValue(value);
-        });
-
-        auto slider2 = BeatSaberUI::CreateSliderSetting(container->get_transform(), "Second Timed Switch", 1, getModConfig().TimedSwitch2Int.GetValue(), getModConfig().TimedSwitch1Int.GetValue(), 240, [&](int value)
-        {   getModConfig().TimedSwitch2Int.SetValue(value);   });
-        slider2->FormatString = SecondsToString;
-
-        auto text3 = BeatSaberUI::CreateText(container->get_transform(), "Third Timed Setting");
-        text3->set_fontSize(4.0f);
-        text3->set_alignment(TextAlignmentOptions::Center);
-
-
-        BeatSaberUI::CreateToggle(container->get_transform(), "Enable Third Timed Switch", getModConfig().TimedSwitch3.GetValue(), [](bool value)
-        {
-            getModConfig().TimedSwitch3.SetValue(value);
-        });
-
-        auto slider3 = BeatSaberUI::CreateSliderSetting(container->get_transform(), "Third Timed Switch", 1, getModConfig().TimedSwitch3Int.GetValue(), getModConfig().TimedSwitch2Int.GetValue(), 360, [&](int value)
-        {   getModConfig().TimedSwitch3Int.SetValue(value);   });
-        slider3->FormatString = SecondsToString;
-
-
-        auto text4 = BeatSaberUI::CreateText(container->get_transform(), "Fourth Timed Setting");
-        text4->set_fontSize(4.0f);
-        text4->set_alignment(TextAlignmentOptions::Center);
-
-        BeatSaberUI::CreateToggle(container->get_transform(), "Enable Fourth Timed Switch", getModConfig().TimedSwitch4.GetValue(), [](bool value)
-        {
-            getModConfig().TimedSwitch4.SetValue(value);
-        });
-
-        auto slider4 = BeatSaberUI::CreateSliderSetting(container->get_transform(), "Fourth Timed Switch", 1, getModConfig().TimedSwitch4Int.GetValue(), getModConfig().TimedSwitch3Int.GetValue(), 480, [&](int value)
-        {   getModConfig().TimedSwitch4Int.SetValue(value);   });
-        slider4->FormatString = SecondsToString;
+        auto parser = BSMLParser::parse(IncludedAssets::ToggleSettings_bsml);
+        parser->Construct(get_transform(), this);
     }
 }
