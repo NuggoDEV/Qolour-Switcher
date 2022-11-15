@@ -15,9 +15,14 @@ namespace QolourSwitcher
     {
         if (!instance)
         {
-            instance = new SettingsHost::New_ctor();
+            instance = SettingsHost::New_ctor();
         }
         return instance.ptr();
+    }
+
+    void SettingsHost::ctor()
+    {
+        
     }
 
 
