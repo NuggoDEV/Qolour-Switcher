@@ -52,9 +52,11 @@ extern "C" void load() {
     }
     il2cpp_functions::Init();
 
+    LoggerContextObject logger = getLogger().WithContext("Load");
+
     getLogger().info("Loading Qolour Switcher UI & Config");
 
-    getModConfig().Init(modInfo);
+    //getModConfig().Init(modInfo);
 
     QuestUI::Init();
     QuestUI::Register::RegisterMainMenuModSettingsFlowCoordinator<QolourSwitcher::UI::QolourSwitcherFlowCoordinator *>(modInfo, "Qolour Switcher");
@@ -64,8 +66,8 @@ extern "C" void load() {
 
     getLogger().info("Installing Qolour Switcher Hooks");
 
-    auto &logger = getLogger();
-    Hooks::InstallHooks(logger);
+    auto &hookLogger = getLogger();
+    Hooks::InstallHooks(hookLogger);
 
     CoreAPI::addForceEnableChromaHooks(modInfo);
 
