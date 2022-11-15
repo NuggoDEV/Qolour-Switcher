@@ -19,6 +19,7 @@ static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to 
 // other config tools such as config-utils don't use this config, so it can be removed if those are in use
 Configuration& getConfig() {
     static Configuration config(modInfo);
+    config.Load();
     return config;
 }
 
