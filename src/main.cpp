@@ -1,6 +1,10 @@
 #include "main.hpp"
 #include "Hooks.hpp"
 #include "ModConfig.hpp"
+#include "config.hpp"
+#include "SettingsHost.hpp"
+
+#include "bsml/shared/BSML.hpp"
 
 #include "ModUI/QolourSwitcherViewController.hpp"
 #include "ModUI/QolourSwitcherFlowCoordinator.hpp"
@@ -41,6 +45,11 @@ extern "C" void setup(ModInfo& info) {
 
 // Called later on in the game loading - a good time to install function hooks
 extern "C" void load() {
+
+    if (!LoadConfig())
+    {
+        SaveConfig();
+    }
     il2cpp_functions::Init();
 
     getLogger().info("Loading Qolour Switcher UI & Config");
@@ -49,6 +58,7 @@ extern "C" void load() {
 
     QuestUI::Init();
     QuestUI::Register::RegisterMainMenuModSettingsFlowCoordinator<QolourSwitcher::UI::QolourSwitcherFlowCoordinator *>(modInfo, "Qolour Switcher");
+    //BSML::Register::RegisterSettingsMenu("Qolour Switcher", MOD_ID "_settings", QolourSwitcher::SettingsHost::get_instance(), false);
 
     getLogger().info("Successfully loaded Qolour Switcher UI & Config!");
 
