@@ -3,19 +3,19 @@
         <text text="Toggle Settings" font-size='6' align='Center'/>
 
         <text text='First Timed Setting' font-size='4' align='Center'/>
-        <toggle-setting label='Enable First Timed Switch' value='firstTime' hover-hint='Enables the first timed colour switch'/>
+        <toggle-setting label='Enable First Timed Switch' value='toggleSwitch1' hover-hint='Enables the first timed colour switch'/>
         <slider-setting label='First Timed Switch' min='0' max='120' increment='1' hover-hint='What time in the song the first timed switch activates.'/>
 
         <text text='First Timed Setting' font-size='4' align='Center'/>
-        <toggle-setting label='Enable Second Timed Switch' value='secondTime' hover-hint='Enables the second timed colour switch'/>
+        <toggle-setting label='Enable Second Timed Switch' value='toggleSwitch2' hover-hint='Enables the second timed colour switch'/>
         <slider-setting label='First Timed Switch' min='0' max='120' increment='1' hover-hint='What time in the song the first timed switch activates.'/>
 
         <text text='First Timed Setting' font-size='4' align='Center'/>
-        <toggle-setting label='Enable Third Timed Switch' value='thirdTime' hover-hint='Enables the second timed colour switch'/>
+        <toggle-setting label='Enable Third Timed Switch' value='toggleSwitch3' hover-hint='Enables the second timed colour switch'/>
         <slider-setting label='First Timed Switch' min='0' max='120' increment='1' hover-hint='What time in the song the first timed switch activates.'/>
 
         <text text='First Timed Setting' font-size='4' align='Center'/>
-        <toggle-setting label='Enable Fourth Timed Switch' value='fourthTime' hover-hint='Enables the fourth timed colour switch'/>
+        <toggle-setting label='Enable Fourth Timed Switch' value='toggleSwitch4' hover-hint='Enables the fourth timed colour switch'/>
         <slider-setting label='First Timed Switch' min='0' max='120' increment='1' hover-hint='What time in the song the first timed switch activates.'/>
     </vertical>
 </bg>
