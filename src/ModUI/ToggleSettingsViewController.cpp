@@ -5,6 +5,7 @@
 using namespace QuestUI;
 
 #include "assets.hpp"
+#include "SettingsHost.hpp"
 #include "bsml/shared/BSML.hpp"
 using namespace BSML;
 
@@ -40,5 +41,18 @@ void QolourSwitcher::UI::ToggleSettingsViewController::DidActivate(bool firstAct
     {        
         auto parser = BSMLParser::parse(IncludedAssets::ToggleSettings_bsml);
         parser->Construct(get_transform(), this);
+
+
+        bool SettingsHost::get_toggleSwitch1() {    return config.toggleSwitch1; getLogger().info("get_toggleSwitch1");    }
+        void SettingsHost::set_toggleSwitch1(bool value) {    config.toggleSwitch1 = value;    SaveConfig(); getLogger().info("set_toggleSwitch1");    }
+
+        bool SettingsHost::get_toggleSwitch2() {    return config.toggleSwitch2; getLogger().info("get_toggleSwitch2");    }
+        void SettingsHost::set_toggleSwitch2(bool value) {    config.toggleSwitch2 = value;    SaveConfig(); getLogger().info("set_toggleSwitch2");    }
+
+        bool SettingsHost::get_toggleSwitch3() {    return config.toggleSwitch3; getLogger().info("get_toggleSwitch3");    }
+        void SettingsHost::set_toggleSwitch3(bool value) {    config.toggleSwitch3 = value;    SaveConfig(); getLogger().info("set_toggleSwitch3");    }
+
+        bool SettingsHost::get_toggleSwitch4() {    return config.toggleSwitch4; getLogger().info("get_toggleSwitch4");    }
+        void SettingsHost::set_toggleSwitch4(bool value) {    config.toggleSwitch4 = value;    SaveConfig(); getLogger().info("set_toggleSwitch4");    }
     }
 }
