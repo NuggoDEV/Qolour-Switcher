@@ -5,6 +5,7 @@
 using namespace QuestUI;
 
 #include "assets.hpp"
+#include "SettingsHost.hpp"
 #include "bsml/shared/BSML.hpp"
 using namespace BSML;
 
