@@ -66,5 +66,6 @@ bool LoadConfig()
         foundEverything = false;
     }
 
-    return foundEverything;
+    if (foundEverything)
+        return foundEverything;
 }
