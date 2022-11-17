@@ -66,6 +66,49 @@ bool LoadConfig()
         foundEverything = false;
     }
 
-    if (foundEverything)
+
+
+    if (getConfig().config.HasMember("timedSwitch1") && getConfig().config["timedSwitch1"].IsInt())
+    {
+        config.timedSwitch1 = getConfig().config["timedSwitch1"].GetInt();
+    }
+    else
+    {
+        foundEverything = false;
+    }
+
+
+    if (getConfig().config.HasMember("timedSwitch2") && getConfig().config["timedSwitch2"].IsInt())
+    {
+        config.timedSwitch2 = getConfig().config["timedSwitch2"].GetInt();
+    }
+    else
+    {
+        foundEverything = false;
+    }
+
+
+    if (getConfig().config.HasMember("timedSwitch3") && getConfig().config["timedSwitch3"].IsInt())
+    {
+        config.timedSwitch3 = getConfig().config["timedSwitch3"].GetInt();
+    }
+    else
+    {
+        foundEverything = false;
+    }
+
+
+    if (getConfig().config.HasMember("timedSwitch4") && getConfig().config["timedSwitch4"].IsInt())
+    {
+        config.timedSwitch4 = getConfig().config["timedSwitch4"].GetInt();
+    }
+    else
+    {
+        foundEverything = false;
+    }
+
+    
+
+    if (foundEverything) getLogger().info("Config loaded!");
         return foundEverything;
 }

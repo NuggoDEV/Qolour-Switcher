@@ -8,6 +8,11 @@ struct config_t
     bool toggleSwitch2 = true;
     bool toggleSwitch3 = true;
     bool toggleSwitch4 = true;
+
+    int timedSwitch1 = 0;
+    int timedSwitch2 = 0;
+    int timedSwitch3 = 0;
+    int timedSwitch4 = 0;
 };
 
 
