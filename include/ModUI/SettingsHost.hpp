@@ -11,6 +11,11 @@ DECLARE_CLASS_CODEGEN(QolourSwitcher, SettingsHost, Il2CppObject,
     DECLARE_BSML_PROPERTY(bool, toggleSwitch3);
     DECLARE_BSML_PROPERTY(bool, toggleSwitch4);
 
+    DECLARE_BSML_PROPERTY(int, timedSwitch1);
+    DECLARE_BSML_PROPERTY(int, timedSwitch2);
+    DECLARE_BSML_PROPERTY(int, timedSwitch3);
+    DECLARE_BSML_PROPERTY(int, timedSwitch4);
+
     DECLARE_CTOR(ctor);
 
     public:

@@ -2,12 +2,11 @@
 #include "Hooks.hpp"
 #include "ModConfig.hpp"
 #include "config.hpp"
-#include "SettingsHost.hpp"
+#include "ModUI/SettingsHost.hpp"
+#include "assets.hpp"
 
 #include "bsml/shared/BSML.hpp"
-
-#include "ModUI/QolourSwitcherViewController.hpp"
-#include "ModUI/QolourSwitcherFlowCoordinator.hpp"
+#include "bsml/shared/BSMLDataCache.hpp"
 
 #include "questui/shared/QuestUI.hpp"
 using namespace QuestUI;
@@ -56,11 +55,10 @@ extern "C" void load() {
 
     getLogger().info("Loading Qolour Switcher UI & Config");
 
-    //getModConfig().Init(modInfo);
+    getModConfig().Init(modInfo);
 
     QuestUI::Init();
-    QuestUI::Register::RegisterMainMenuModSettingsFlowCoordinator<QolourSwitcher::UI::QolourSwitcherFlowCoordinator *>(modInfo, "Qolour Switcher");
-    //BSML::Register::RegisterSettingsMenu("Qolour Switcher", MOD_ID "_settings", QolourSwitcher::SettingsHost::get_instance(), false);
+    BSML::Register::RegisterSettingsMenu("Qolour Switcher", MOD_ID "_settings", QolourSwitcher::SettingsHost::get_instance(), true);
 
     getLogger().info("Successfully loaded Qolour Switcher UI & Config!");
 
@@ -72,4 +70,9 @@ extern "C" void load() {
     CoreAPI::addForceEnableChromaHooks(modInfo);
 
     getLogger().info("Installed Qolour Switcher Hooks!");
+}
+
+BSML_DATACACHE(settings)
+{
+    return IncludedAssets::ToggleSettings_bsml;
 }
