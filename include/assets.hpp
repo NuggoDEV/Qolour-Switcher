@@ -38,7 +38,6 @@ struct IncludedAsset {
 
 namespace IncludedAssets {
 
-	DECLARE_FILE(MainSettings_bsml)
 	DECLARE_FILE(ToggleSettings_bsml)
 
 }
