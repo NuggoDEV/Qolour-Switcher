@@ -1,8 +1,0 @@
-<bg id='root' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='https://raw.githubusercontent.com/RedBrumbler/Quest-BSML-Docs/gh-pages/schema.xsd'>
-    <vertical pref-height='80' vertical-fit='PreferredSize' pref-width='90' horizontal-fit='PreferredSize'>
-        <color-setting text='Left Saber Colour' apply-on-change='true' value='LeftSaberColour' hover-hint='Changes the colour of the left saber'/>
-        <color-setting text='Right Saber Colour' apply-on-change='true' value='RightSaberColour' hover-hint='Changes the colour of the right saber'/>
-        <color-setting text='Bomb Colour' apply-on-change='true' value='BombColour' hover-hint='Changes the colour of the bombs'/>
-        <color-setting text='Wall Colour' apply-on-change='true' value='WallColour' hover-hint='Changes the colour of the walls'/>
-    </vertical>
-</bg>
