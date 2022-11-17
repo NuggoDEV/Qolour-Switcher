@@ -7,6 +7,7 @@
 using namespace UnityEngine;
 
 DECLARE_CONFIG(ModConfig, 
+    CONFIG_VALUE(toggleSwitch1, int "Toggle Switch 1", 0);
 
     CONFIG_VALUE(DidUserCrash, bool, "If the user crashes before results screen", false);
     CONFIG_VALUE(ColoursChanged, bool, "When a Colour Gets Changed", false);
@@ -40,6 +41,8 @@ DECLARE_CONFIG(ModConfig,
     CONFIG_VALUE(TimedSwitch4RNColour, Color, "Fourth Right Note Colour", Color(0.1, 0.1, 0.1, 1));
     
     CONFIG_INIT_FUNCTION(
+        CONFIG_INIT_VALUE(toggleSwitch1);
+
         CONFIG_INIT_VALUE(DidUserCrash);
         CONFIG_INIT_VALUE(ColoursChanged);
         CONFIG_INIT_VALUE(BombColour);
