@@ -3,7 +3,7 @@
     <tab-selector tab-tag='tabs'/>
 
 
-    <horizontal preferred-width='100' preferred-height='58' pad-top='8'>
+    <horizontal preferred-width='150' preferred-height='58' pad-top='8'>
         <tab tab-name='Main' tags='tabs'>
             <vertical pref-height='80' vertical-fit='PreferredSize' pref-width='90' horizontal-fit='PreferredSize'>
                 <text text="test" font-size='4' align='Center'/>
@@ -11,27 +11,58 @@
         </tab>
 
         <tab tab-name='Toggles' tags='tabs'>
-            <settings-container>
+            <vertical pref-height='80' vertical-fit='PreferredSize' pref-width='90' horizontal-fit='PreferredSize'>
                 <text text='First Timed Setting' font-size='4'/>
                 <toggle-setting label='Enable First Timed Switch' value='toggleSwitch1' apply-on-change='true' hover-hint='Enables the first timed colour switch'/>
-                <slider-setting label='First Timed Switch' min='0' max='120' increment='1' value='timedSwitch1' apply-on-change='true' hover-hint='What time in the song the first timed switch activates.'/>
+
                 <text text='Second Timed Setting' font-size='4'/>
                 <toggle-setting label='Enable Second Timed Switch' value='toggleSwitch2' apply-on-change='true' hover-hint='Enables the second timed colour switch'/>
-                <slider-setting label='Second Timed Switch' min='0' max='120' increment='1' value='timedSwitch2' apply-on-change='true' hover-hint='What time in the song the second timed switch activates.'/>
 
                 <text text='Third Timed Setting' font-size='4'/>
-                <toggle-setting label='Enable Third Timed Switch' value='toggleSwitch3' apply-on-change='true' hover-hint='Enables the second timed colour switch'/>
-                <slider-setting label='Third Timed Switch' min='0' max='120' increment='1' value='timedSwitch3' apply-on-change='true' hover-hint='What time in the song the third timed switch activates.'/>
-
+                <toggle-setting label='Enable Third Timed Switch' value='toggleSwitch3' apply-on-change='true' hover-hint='Enables the third timed colour switch'/>
+            
                 <text text='Fourth Timed Setting' font-size='4'/>
                 <toggle-setting label='Enable Fourth Timed Switch' value='toggleSwitch4' apply-on-change='true' hover-hint='Enables the fourth timed colour switch'/>
-                <slider-setting label='Fourth Timed Switch' min='0' max='120' increment='1' value='timedSwitch4' apply-on-change='true' hover-hint='What time in the song the fourth timed switch activates.'/>
-            </settings-container>
+            </vertical>
         </tab>
 
-        <tab tab-name='Timed' tags='tabs'>
+        <tab tab-name='Activation Times' tags='tabs'>
             <vertical pref-height='80' vertical-fit='PreferredSize' pref-width='90' horizontal-fit='PreferredSize'>
-                <text text="test" font-size='4' align='Center'/>
+                <slider-setting label='First Timed Switch' min='0' max='120' increment='1' value='timedSwitch1' apply-on-change='true' hover-hint='What time in the song the first timed switch activates.'/>
+            
+                <slider-setting label='Second Timed Switch' min='0' max='120' increment='1' value='timedSwitch2' apply-on-change='true' hover-hint='What time in the song the second timed switch activates.'/>
+
+                <slider-setting label='Third Timed Switch' min='0' max='120' increment='1' value='timedSwitch3' apply-on-change='true' hover-hint='What time in the song the third timed switch activates.'/>
+            
+                <slider-setting label='Fourth Timed Switch' min='0' max='120' increment='1' value='timedSwitch4' apply-on-change='true' hover-hint='What time in the song the fourth timed switch activates.'/>
+            </vertical>
+        </tab>
+
+        <tab tab-name='Timed Colours' tags='tabs'>
+            <vertical pref-height='80' vertical-fit'PreferredSize' pref-width='90' horizontal-fit='PreferredSize'>
+                <text text='First Timed Colours' font-size='4'/>
+                <color-setting label='Left Saber Colour' value='timedSwitch1LeftColour' apply-on-change='true' hover-hint='Changes the colour of the left saber at the specified time in the Activation Times tab'/>
+                <color-setting label='Right Saber Colour' value='timedSwitch1RightColour' apply-on-change='true' hover-hint='Changes the colour of the right saber at the specified time in the Activation Times tab'/>
+                <color-setting label='Bomb Colour' value='timedSwitch1BombColour' apply-on-change='true' hover-hint='Changes the colour of the bombs at the specified time in the Activation Times tab'/>
+                <color-setting label='Wall Colour' value='timedSwitch1WallColour' apply-on-change='true' hover-hint='Changes the colour of the walls at the specified time in the Activation Times tab'/>
+
+                <text text='Second Timed Colours' font-size='4'/>
+                <color-setting label='Left Saber Colour' value='timedSwitch2LeftColour' apply-on-change='true' hover-hint='Changes the colour of the left saber at the specified time in the Activation Times tab'/>
+                <color-setting label='Right Saber Colour' value='timedSwitch2RightColour' apply-on-change='true' hover-hint='Changes the colour of the right saber at the specified time in the Activation Times tab'/>
+                <color-setting label='Bomb Colour' value='timedSwitch2BombColour' apply-on-change='true' hover-hint='Changes the colour of the bombs at the specified time in the Activation Times tab'/>
+                <color-setting label='Wall Colour' value='timedSwitch2WallColour' apply-on-change='true' hover-hint='Changes the colour of the walls at the specified time in the Activation Times tab'/>
+
+                <text text='Third Timed Colours' font-size='4'/>
+                <color-setting label='Left Saber Colour' value='timedSwitch3LeftColour' apply-on-change='true' hover-hint='Changes the colour of the left saber at the specified time in the Activation Times tab'/>
+                <color-setting label='Right Saber Colour' value='timedSwitch3RightColour' apply-on-change='true' hover-hint='Changes the colour of the right saber at the specified time in the Activation Times tab'/>
+                <color-setting label='Bomb Colour' value='timedSwitch3BombColour' apply-on-change='true' hover-hint='Changes the colour of the bombs at the specified time in the Activation Times tab'/>
+                <color-setting label='Wall Colour' value='timedSwitch3WallColour' apply-on-change='true' hover-hint='Changes the colour of the walls at the specified time in the Activation Times tab'/>
+
+                <text text='Fourth Timed Colours' font-size='4'/>
+                <color-setting label='Left Saber Colour' value='timedSwitch4LeftColour' apply-on-change='true' hover-hint='Changes the colour of the left saber at the specified time in the Activation Times tab'/>
+                <color-setting label='Right Saber Colour' value='timedSwitch4RightColour' apply-on-change='true' hover-hint='Changes the colour of the right saber at the specified time in the Activation Times tab'/>
+                <color-setting label='Bomb Colour' value='timedSwitch4BombColour' apply-on-change='true' hover-hint='Changes the colour of the bombs at the specified time in the Activation Times tab'/>
+                <color-setting label='Wall Colour' value='timedSwitch4WallColour' apply-on-change='true' hover-hint='Changes the colour of the walls at the specified time in the Activation Times tab'/>
             </vertical>
         </tab>
     </horizontal>
