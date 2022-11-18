@@ -16,10 +16,10 @@ DECLARE_CONFIG(ModConfig,
     CONFIG_VALUE(toggleSwitch3, bool, "Activates the third timed switch", false);
     CONFIG_VALUE(toggleSwitch4, bool, "Activates the fourth timed switch", false);
 
-    CONFIG_VALUE(timedSwitch1, int, "Time for the first colour switch to happen", 0);
-    CONFIG_VALUE(timedSwitch2, int, "Time for the second colour switch to happen", 0);
-    CONFIG_VALUE(timedSwitch3, int, "Time for the third colour switch to happen", 0);
-    CONFIG_VALUE(timedSwitch4, int, "Time for the fourth colour switch to happen", 0);
+    CONFIG_VALUE(timedSwitch1, float, "Time for the first colour switch to happen", 0);
+    CONFIG_VALUE(timedSwitch2, float, "Time for the second colour switch to happen", 0);
+    CONFIG_VALUE(timedSwitch3, float, "Time for the third colour switch to happen", 0);
+    CONFIG_VALUE(timedSwitch4, float, "Time for the fourth colour switch to happen", 0);
 
     CONFIG_VALUE(bombColour, Color, "Bomb colour since base game doesn't save value", Color(0.1f, 0.1f, 0.1f, 1.0f));
 
@@ -84,37 +84,3 @@ DECLARE_CONFIG(ModConfig,
         CONFIG_INIT_VALUE(timedSwitch4WallColour);
     )
 )
-
-//DECLARE_BSML_PROPERTY(bool, DidUserCrash);
-//DECLARE_BSML_PROPERTY(bool, ColourChanged);
-//DECLARE_BSML_PROPERTY(Color, BombColour);
-
-//DECLARE_BSML_PROPERTY(bool, toggleSwitch1);
-//DECLARE_BSML_PROPERTY(bool, toggleSwitch2);
-//DECLARE_BSML_PROPERTY(bool, toggleSwitch3);
-//DECLARE_BSML_PROPERTY(bool, toggleSwitch4);
-
-//DECLARE_BSML_PROPERTY(int, timedSwitch1);
-//DECLARE_BSML_PROPERTY(int, timedSwitch2);
-//DECLARE_BSML_PROPERTY(int, timedSwitch3);
-//DECLARE_BSML_PROPERTY(int, timedSwitch4);
-
-//DECLARE_BSML_PROPERTY(Color, timedSwitch1LeftColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch1RightColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch1BombColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch1WallColour);
-
-//DECLARE_BSML_PROPERTY(Color, timedSwitch2LeftColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch2RightColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch2BombColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch2WallColour);
-
-//DECLARE_BSML_PROPERTY(Color, timedSwitch3LeftColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch3RightColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch3BombColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch3WallColour);
-
-//DECLARE_BSML_PROPERTY(Color, timedSwitch4LeftColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch4RightColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch4BombColour);
-//DECLARE_BSML_PROPERTY(Color, timedSwitch4WallColour);
