@@ -1,9 +1,8 @@
 #include "main.hpp"
 #include "Hooks.hpp"
 #include "test.hpp"
-//#include "config.hpp"
-//#include "ModUI/SettingsHost.hpp"
 #include "assets.hpp"
+#include "ModUI/SettingsHost.hpp"
 
 #include "bsml/shared/BSML.hpp"
 #include "bsml/shared/BSMLDataCache.hpp"
@@ -44,35 +43,21 @@ extern "C" void setup(ModInfo& info) {
 
 // Called later on in the game loading - a good time to install function hooks
 extern "C" void load() {
-
-    //if (!LoadConfig())
-    //{
-    //    SaveConfig();
-    //}
     il2cpp_functions::Init();
 
-    LoggerContextObject logger = getLogger().WithContext("Load");
-
-    getLogger().info("Loading Qolour Switcher UI & Config");
-
+    getLogger().info("Loading UI & Config");
     getModConfig().Init(modInfo);
-
-    QuestUI::Init();
-    //BSML::Register::RegisterSettingsMenu("Qolour Switcher", MOD_ID "_settings", QolourSwitcher::SettingsHost::get_instance(), true);
-
-    getLogger().info("Successfully loaded Qolour Switcher UI & Config!");
+    BSML::Register::RegisterSettingsMenu("Qolour Switcher", MOD_ID "_settings", QolourSwitcher::SettingsHost::get_instance(), false);
+    getLogger().info("Successfully loaded UI & Config!");
 
     getLogger().info("Installing Qolour Switcher Hooks");
-
     auto &hookLogger = getLogger();
     Hooks::InstallHooks(hookLogger);
-
     CoreAPI::addForceEnableChromaHooks(modInfo);
-
     getLogger().info("Installed Qolour Switcher Hooks!");
 }
 
 BSML_DATACACHE(settings)
 {
-    return IncludedAssets::ToggleSettings_bsml;
+    return IncludedAssets::Settings_bsml;
 }
