@@ -1,6 +1,6 @@
 # Qolour Switcher
 
-Allows user to change colours mid-game!
+Allows full customization of the Bloqs, Walls and Bombs :D
 
 ## Credits
 
