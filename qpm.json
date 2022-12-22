@@ -1,34 +1,55 @@
 {
-	"sharedDir": "shared",
-	"dependenciesDir": "extern",
-	"info": {
-		"name": "Qolour Switcher",
-		"id": "QolourSwitcher",
-		"version": "0.1.0",
-		"url": null,
-		"additionalData": {
-			"overrideSoName": "libQolourSwitcher.so"
-		}
-	},
-	"dependencies": [
-		{
-			"id": "beatsaber-hook",
-			"versionRange": "^3.8.0",
-			"additionalData": {
-				"extraFiles": [
-					"src/inline-hook"
-				]
-			}
-		},
-		{
-			"id": "modloader",
-			"versionRange": "=1.2.3",
-			"additionalData": {
-				
-			}
-		}
-	],
-	"additionalData": {
-		
-	}
+  "sharedDir": "shared",
+  "dependenciesDir": "extern",
+  "info": {
+    "name": "Qolour Switcher",
+    "id": "QolourSwitcher",
+    "version": "0.1.0",
+    "url": null,
+    "additionalData": {
+      "overrideSoName": "libQolourSwitcher.so"
+    }
+  },
+  "dependencies": [
+    {
+      "id": "beatsaber-hook",
+      "versionRange": "^3.8.0",
+      "additionalData": {
+        "extraFiles": [
+          "src/inline-hook"
+        ]
+      }
+    },
+    {
+      "id": "modloader",
+      "versionRange": "=1.2.3",
+      "additionalData": {}
+    },
+    {
+      "id": "bsml",
+      "versionRange": "^0.2.1",
+      "additionalData": {}
+    },
+    {
+      "id": "chroma",
+      "versionRange": "^2.7.0",
+      "additionalData": {}
+    },
+    {
+      "id": "codegen",
+      "versionRange": "=0.28.0",
+      "additionalData": {}
+    },
+    {
+      "id": "config-utils",
+      "versionRange": "^1.0.1",
+      "additionalData": {}
+    },
+    {
+      "id": "custom-types",
+      "versionRange": "=0.15.21",
+      "additionalData": {}
+    }
+  ],
+  "additionalData": {}
 }

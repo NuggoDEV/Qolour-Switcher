@@ -1,0 +1,12 @@
+<bg id='root' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='https://raw.githubusercontent.com/RedBrumbler/Quest-BSML-Docs/gh-pages/schema.xsd'>
+    <tab-selector tab-tag='tabs'/>
+
+    <horizontal preferred-width="100" preferred-height="58" pad-top="8">
+        <tab tab-name="Gameplay" tags="tabs">
+            <text text="Test!" />
+        </tab>
+        <tab tab-name="Time 1" tags="tabs">
+            <text text="Poggers"/>
+        </tab>
+    </horizontal>
+</bg>
