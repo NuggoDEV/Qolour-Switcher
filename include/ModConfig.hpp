@@ -6,6 +6,11 @@
 using namespace UnityEngine;
 
 DECLARE_CONFIG(ModConfig,
+    CONFIG_VALUE(LeftSaber, Color, "Left Saber", Color(1, 0, 0, 1));
+    CONFIG_VALUE(RightSaber, Color, "Right Saber", Color(0, 0, 1, 1));
+    CONFIG_VALUE(BombColour, Color, "Bomb Colour", Color(0.1, 0.1, 0.1, 1));
+    CONFIG_VALUE(WallColour, Color, "Wall Colour", Color(0.8, 0, 0, 1));
+
     CONFIG_VALUE(TimedToggle1, bool, "First Timed Switch Activation Toggle", false);
     CONFIG_VALUE(TimedActivation1, float, "First Timed Switch Activation", 0.0f);
     CONFIG_VALUE(LeftSaber1, Color, "Left Saber 1 Colour", Color(1, 0, 0, 1));

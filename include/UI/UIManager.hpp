@@ -10,6 +10,11 @@ using namespace UnityEngine;
 DECLARE_CLASS_CODEGEN(QolourSwitcher::UI, UIManager, Il2CppObject,
     DECLARE_INSTANCE_FIELD(HMUI::ViewController*, qolourSwitcherView);
 
+    DECLARE_BSML_PROPERTY(Color, LeftSaber);
+    DECLARE_BSML_PROPERTY(Color, RightSaber);
+    DECLARE_BSML_PROPERTY(Color, BombColour);
+    DECLARE_BSML_PROPERTY(Color, WallColour);
+
     DECLARE_BSML_PROPERTY(bool, TimedToggle1);
     DECLARE_BSML_PROPERTY(float, TimedActivation1);
     DECLARE_BSML_PROPERTY(Color, LeftColour1);

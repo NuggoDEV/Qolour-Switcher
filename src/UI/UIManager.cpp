@@ -4,6 +4,12 @@
 #include "UnityEngine/Color.hpp"
 using namespace UnityEngine;
 
+#include "GlobalNamespace/PlayerDataModel.hpp"
+#include "GlobalNamespace/PlayerData.hpp"
+#include "GlobalNamespace/ColorScheme.hpp"
+#include "GlobalNamespace/ColorSchemesSettings.hpp"
+using namespace GlobalNamespace;
+
 DEFINE_TYPE(QolourSwitcher::UI, UIManager);
 
 namespace QolourSwitcher::UI
@@ -17,8 +23,23 @@ namespace QolourSwitcher::UI
     }
     void UIManager::ctor()
     {
-        
+
     }
+
+
+    Color UIManager::get_LeftSaber() { return getModConfig().LeftSaber.GetValue(); }
+    void UIManager::set_LeftSaber(Color value) { getModConfig().LeftSaber.SetValue(value); }
+
+    Color UIManager::get_RightSaber() { return getModConfig().RightSaber.GetValue(); }
+    void UIManager::set_RightSaber(Color value) { getModConfig().RightSaber.SetValue(value); }
+
+    Color UIManager::get_BombColour() { return getModConfig().BombColour.GetValue(); }
+    void UIManager::set_BombColour(Color value) { return getModConfig().BombColour.SetValue(value); }
+
+    Color UIManager::get_WallColour() { return getModConfig().WallColour.GetValue(); }
+    void UIManager::set_WallColour(Color value) { getModConfig().WallColour.SetValue(value); }
+
+
 
     bool UIManager::get_TimedToggle1() { return getModConfig().TimedToggle1.GetValue(); }
     void UIManager::set_TimedToggle1(bool value) { getModConfig().TimedToggle1.SetValue(value); }
