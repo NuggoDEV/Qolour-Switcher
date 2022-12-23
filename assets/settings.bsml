@@ -11,7 +11,8 @@
             </vertical>
         </tab>
         <tab tab-name="Time 1" tags="tabs">
-            <horizontal><text text="Poggers"/></horizontal>
+            <toggle-setting value="TimedToggle1" text="Enable Timed Switch" apply-on-change="true" hover-hint="Enables or disables the first timed switch."/>
+            <slider-setting value="TimedActivation1" text="Activation Time" digits="0" min="0" increment="1" formatter="SecondsToString"  />
         </tab>
     </horizontal>
 </bg>

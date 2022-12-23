@@ -9,7 +9,6 @@ using namespace QolourSwitcher::UI;
 
 #include "assets.hpp"
 #include "bsml/shared/BSML.hpp"
-#include "bsml/shared/BSMLDataCache.hpp"
 
 static ModInfo modInfo; // Stores the ID and version of our mod, and is sent to the modloader upon startup
 
@@ -43,7 +42,9 @@ extern "C" void load() {
     getLogger().info("Loading Config and UI.");
 
     getModConfig().Init(modInfo);
-    BSML::Register::RegisterSettingsMenu("Qolour Switcher", MOD_ID "_settings", UIManager::get_instance(), false);
+
+    manager.Init();
+    //BSML::Register::RegisterSettingsMenu("Qolour Switcher", MOD_ID "_settings", UIManager::get_instance(), false);
 
     getLogger().info("Config and UI loaded successfully!");
 
@@ -53,9 +54,4 @@ extern "C" void load() {
     Chroma::CoreAPI::addForceEnableChromaHooks(modInfo);
 
     getLogger().info("Installed Qolour Switcher hooks successfully!");
-}
-
-BSML_DATACACHE(settings)
-{
-    return IncludedAssets::settings_bsml;
 }

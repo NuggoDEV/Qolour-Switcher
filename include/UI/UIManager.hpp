@@ -1,54 +1,39 @@
 #pragma once
-#include "HMUI/ViewController.hpp"
 
-#include "custom-types/shared/macros.hpp"
-#include "bsml/shared/macros.hpp"
+#include "bsml/shared/Helpers/creation.hpp"
+#include "bsml/shared/BSML.hpp"
+#include "HMUI/FlowCoordinator.hpp"
+#include "HMUI/ViewController_AnimationDirection.hpp"
+#include "HMUI/ViewController_AnimationType.hpp"
+#include "UI/FlowCoordinators/QolourSwitcherFlowCoordinator.hpp"
 
-#include "UnityEngine/Color.hpp"
-using namespace UnityEngine;
+#include "questui/shared/BeatSaberUI.hpp"
+using namespace QuestUI;
 
-DECLARE_CLASS_CODEGEN(QolourSwitcher::UI, UIManager, Il2CppObject,
-    DECLARE_INSTANCE_FIELD(HMUI::ViewController*, qolourSwitcherView);
+namespace QolourSwitcher::UI
+{
+    class UIManager
+    {
+        HMUI::FlowCoordinator *parentFlow;
+        QolourSwitcher::UI::FlowCoordinators::QolourSwitcherFlowCoordinator *flow;
+        public:
+            void Init()
+            {
+                BSML::Register::RegisterMenuButton("Qolour Switcher", "Allows for full customization of the saber, bomb and wall colours!", [this]()
+                {
+                    ShowFlow(false);
+                });
+            }
 
-    DECLARE_BSML_PROPERTY(Color, LeftSaber);
-    DECLARE_BSML_PROPERTY(Color, RightSaber);
-    DECLARE_BSML_PROPERTY(Color, BombColour);
-    DECLARE_BSML_PROPERTY(Color, WallColour);
+            void ShowFlow(bool immediately)
+            {
+                if (flow == nullptr || flow->m_CachedPtr.m_value == nullptr)
+                    flow = BSML::Helpers::CreateFlowCoordinator<QolourSwitcher::UI::FlowCoordinators::QolourSwitcherFlowCoordinator *>();
+                
+                parentFlow = QuestUI::BeatSaberUI::GetMainFlowCoordinator()->YoungestChildFlowCoordinatorOrSelf();
+                parentFlow->PresentFlowCoordinator(flow, nullptr, HMUI::ViewController::AnimationDirection::Horizontal, HMUI::ViewController::AnimationType::Out, false);
+            }
+    };
 
-    DECLARE_BSML_PROPERTY(bool, TimedToggle1);
-    DECLARE_BSML_PROPERTY(float, TimedActivation1);
-    DECLARE_BSML_PROPERTY(Color, LeftColour1);
-    DECLARE_BSML_PROPERTY(Color, RightColour1);
-    DECLARE_BSML_PROPERTY(Color, BombColour1);
-    DECLARE_BSML_PROPERTY(Color, WallColour1);
-
-
-    DECLARE_BSML_PROPERTY(bool, TimedToggle2);
-    DECLARE_BSML_PROPERTY(float, TimedActivation2);
-    DECLARE_BSML_PROPERTY(Color, LeftColour2);
-    DECLARE_BSML_PROPERTY(Color, RightColour2);
-    DECLARE_BSML_PROPERTY(Color, BombColour2);
-    DECLARE_BSML_PROPERTY(Color, WallColour2);
-
-
-    DECLARE_BSML_PROPERTY(bool, TimedToggle3);
-    DECLARE_BSML_PROPERTY(float, TimedActivation3);
-    DECLARE_BSML_PROPERTY(Color, LeftColour3);
-    DECLARE_BSML_PROPERTY(Color, RightColour3);
-    DECLARE_BSML_PROPERTY(Color, BombColour3);
-    DECLARE_BSML_PROPERTY(Color, WallColour3);
-
-
-    DECLARE_BSML_PROPERTY(bool, TimedToggle4);
-    DECLARE_BSML_PROPERTY(float, TimedActivation4);
-    DECLARE_BSML_PROPERTY(Color, LeftColour4);
-    DECLARE_BSML_PROPERTY(Color, RightColour4);
-    DECLARE_BSML_PROPERTY(Color, BombColour4);
-    DECLARE_BSML_PROPERTY(Color, WallColour4);
-
-    DECLARE_CTOR(ctor);
-    public:
-        static UIManager *get_instance();
-    private:
-        static SafePtr<UIManager> instance;
-)
+    inline static UIManager manager;
+}
