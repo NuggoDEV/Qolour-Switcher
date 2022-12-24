@@ -1,7 +1,7 @@
 <bg id='root' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='https://raw.githubusercontent.com/RedBrumbler/Quest-BSML-Docs/gh-pages/schema.xsd'>
     <tab-selector tab-tag='tabs'/>
 
-    <horizontal preferred-width="100" preferred-height="58" pad-top="8">
+    <horizontal preferred-width="58" preferred-height="58" pad-top="8">
         <tab tab-name="Gameplay" tags="tabs">
             <vertical>
                 <color-setting value="LeftSaber" text="Left Saber" apply-on-change="true" />
@@ -10,9 +10,45 @@
                 <color-setting value="WallColour" text="Wall Colour" apply-on-change="true" />
             </vertical>
         </tab>
-        <tab tab-name="Time 1" tags="tabs">
-            <toggle-setting value="TimedToggle1" text="Enable Timed Switch" apply-on-change="true" hover-hint="Enables or disables the first timed switch."/>
-            <slider-setting value="TimedActivation1" text="Activation Time" digits="0" min="0" increment="1" formatter="SecondsToString"  />
+        <tab tab-name="Time One" tags="tabs">
+            <vertical>
+                <toggle-setting value="TimedToggle1" text="Enable Timed Switch" apply-on-change="true" hover-hint="Enables or disables the first timed switch."/>
+                <slider-setting value="TimedActivation1" id="TimeSlider1" text="Activation Time" show-buttons="true" digits="0" min="0" max="600" increment="1" apply-on-change="true"  />
+                <color-setting value="LeftSaber1" text="Left Saber Colour" apply-on-change="true" />
+                <color-setting value="RightSaber1" text="Right Saber Colour" apply-on-change="true" />
+                <color-setting value="BombColour1" text="Bomb Colour" apply-on-change="true" />
+                <color-setting value="WallColour1" text="Wall Colour" apply-on-change="true" />
+            </vertical>
+        </tab>
+        <tab tab-name="Time Two" tags="tabs">
+            <vertical>
+                <toggle-setting value="TimedToggle2" text="Enable Timed Switch" apply-on-change="true" hover-hint="Enables or disables the second timed switch."/>
+                <slider-setting value="TimedActivation2" id="TimeSlider2" text="Activation Time" show-buttons="true" digits="0" min="0" max="600" increment="1" apply-on-change="true"  />
+                <color-setting value="LeftSaber2" text="Left Saber Colour" apply-on-change="true" />
+                <color-setting value="RightSaber2" text="Right Saber Colour" apply-on-change="true" />
+                <color-setting value="BombColour2" text="Bomb Colour" apply-on-change="true" />
+                <color-setting value="WallColour2" text="Wall Colour" apply-on-change="true" />
+            </vertical>
+        </tab>
+        <tab tab-name="Time Three" tags="tabs">
+            <vertical>
+                <toggle-setting value="TimedToggle3" text="Enable Timed Switch" apply-on-change="true" hover-hint="Enables or disables the third timed switch."/>
+                <slider-setting value="TimedActivation3" id="TimeSlider3" text="Activation Time" show-buttons="true" digits="0" min="0" max="600" increment="1" apply-on-change="true"  />
+                <color-setting value="LeftSaber3" text="Left Saber Colour" apply-on-change="true" />
+                <color-setting value="RightSaber3" text="Right Saber Colour" apply-on-change="true" />
+                <color-setting value="BombColour3" text="Bomb Colour" apply-on-change="true" />
+                <color-setting value="WallColour3" text="Wall Colour" apply-on-change="true" />
+            </vertical>
+        </tab>
+        <tab tab-name="Time Four" tags="tabs">
+            <vertical>
+                <toggle-setting value="TimedToggle4" text="Enable Timed Switch" apply-on-change="true" hover-hint="Enables or disables the fourth timed switch."/>
+                <slider-setting value="TimedActivation4" id="TimeSlider4" text="Activation Time" show-buttons="true" digits="0" min="0" max="600" increment="1" apply-on-change="true"  />
+                <color-setting value="LeftSaber4" text="Left Saber Colour" apply-on-change="true" />
+                <color-setting value="RightSaber4" text="Right Saber Colour" apply-on-change="true" />
+                <color-setting value="BombColour4" text="Bomb Colour" apply-on-change="true" />
+                <color-setting value="WallColour4" text="Wall Colour" apply-on-change="true" />
+            </vertical>
         </tab>
     </horizontal>
 </bg>
