@@ -1,9 +1,6 @@
-#include "ModConfig.hpp"
 #include "Hooks.hpp"
 
-#include "GlobalNamespace/DefaultScenesTransitionsFromInit.hpp"
 #include "GlobalNamespace/MainMenuViewController.hpp"
-
 #include "GlobalNamespace/PlayerDataModel.hpp"
 #include "GlobalNamespace/PlayerData.hpp"
 #include "GlobalNamespace/ColorScheme.hpp"
@@ -16,20 +13,8 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
 
     auto playerDataModal = UnityEngine::Object::FindObjectOfType<PlayerDataModel *>();
     auto playerData = playerDataModal->playerData;
-    auto colourScheme = playerData->colorSchemesSettings->GetColorSchemeForId(playerData->colorSchemesSettings->selectedColorSchemeId);
+    bool colourToggle = playerData->colorSchemesSettings->overrideDefaultColors;
 
-    if (firstActivation)
-    {
-        getModConfig().LeftSaber.SetValue(colourScheme->get_saberAColor());
-        getModConfig().RightSaber.SetValue(colourScheme->get_saberBColor());
-        getModConfig().WallColour.SetValue(colourScheme->get_obstaclesColor());
-    }
-    else
-    {
-        colourScheme->saberAColor = getModConfig().LeftSaber.GetValue();
-        colourScheme->saberBColor = getModConfig().RightSaber.GetValue();
-        colourScheme->obstaclesColor = getModConfig().WallColour.GetValue();
-    }
-
-
+    if (!colourToggle)
+        colourToggle = true;
 }

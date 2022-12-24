@@ -15,7 +15,7 @@ void QolourSwitcherFlowCoordinator::DidActivate(bool firstActivation, bool added
     SetTitle("Qolour Switcher", HMUI::ViewController::AnimationType::In);
     showBackButton = true;
     
-    QolourSwitcherViewController = QuestUI::BeatSaberUI::CreateViewController<ViewControllers::QolourSwitcherViewController *>();
+    QolourSwitcherViewController = QuestUI::BeatSaberUI::CreateViewController<ViewControllers::QolourSwitcherUI *>();
 
     
     ProvideInitialViewControllers(QolourSwitcherViewController, nullptr, nullptr, nullptr, nullptr);
