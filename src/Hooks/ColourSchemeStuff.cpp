@@ -11,9 +11,9 @@ MAKE_AUTO_HOOK_MATCH(MainMenuViewController_DidActivate, &MainMenuViewController
 {
     MainMenuViewController_DidActivate(self, firstActivation, addedToHierarchy, screenSystemEnabling);
 
-    auto playerDataModal = UnityEngine::Object::FindObjectOfType<PlayerDataModel *>();
-    auto playerData = playerDataModal->playerData;
-    bool colourToggle = playerData->colorSchemesSettings->overrideDefaultColors;
+        auto playerDataModal = UnityEngine::Object::FindObjectOfType<PlayerDataModel *>();
+        auto playerData = playerDataModal->playerData;
+        bool colourToggle = playerData->colorSchemesSettings->overrideDefaultColors;
 
     if (!colourToggle)
         colourToggle = true;

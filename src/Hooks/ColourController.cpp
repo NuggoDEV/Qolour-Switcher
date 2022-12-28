@@ -33,14 +33,23 @@ MAKE_AUTO_HOOK_MATCH(AudioTimeSyncController_Update, &AudioTimeSyncController::U
     int songTime = self->songTime;
 
     if (getModConfig().TimedToggle1.GetValue() && getModConfig().TimedActivation1.GetValue() == songTime)
+    {
         NoteAPI::setGlobalNoteColorSafe(getModConfig().LeftSaber1.GetValue(), getModConfig().RightSaber1.GetValue());
-    
+        BombAPI::setGlobalBombColorSafe(getModConfig().BombColour1.GetValue());
+    }
     else if (getModConfig().TimedToggle2.GetValue() && getModConfig().TimedActivation2.GetValue() == songTime)
+    {
         NoteAPI::setGlobalNoteColorSafe(getModConfig().LeftSaber2.GetValue(), getModConfig().RightSaber2.GetValue());
-    
+        BombAPI::setGlobalBombColorSafe(getModConfig().BombColour2.GetValue());
+    }
     else if (getModConfig().TimedToggle3.GetValue() && getModConfig().TimedActivation3.GetValue() == songTime)
+    {
         NoteAPI::setGlobalNoteColorSafe(getModConfig().LeftSaber3.GetValue(), getModConfig().RightSaber3.GetValue());
-    
+        BombAPI::setGlobalBombColorSafe(getModConfig().BombColour3.GetValue());
+    }
     else if (getModConfig().TimedToggle4.GetValue() && getModConfig().TimedActivation4.GetValue() == songTime)
+    {
         NoteAPI::setGlobalNoteColorSafe(getModConfig().LeftSaber4.GetValue(), getModConfig().RightSaber4.GetValue());
+        BombAPI::setGlobalBombColorSafe(getModConfig().BombColour4.GetValue());
+    }
 }

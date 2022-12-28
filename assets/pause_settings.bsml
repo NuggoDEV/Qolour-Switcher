@@ -1,0 +1,8 @@
+<bg id='root' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='https://raw.githubusercontent.com/RedBrumbler/Quest-BSML-Docs/gh-pages/schema.xsd'>
+    <horizontal anchor-pos-y="5">
+        <color-setting value="LeftSaber" text="Left Saber" apply-on-change="true" />
+        <color-setting value="RightSaber" text="Right Saber" apply-on-change="true" />
+        <color-setting value="BombColour" text="Bomb Colour" apply-on-change="true" />
+        <color-setting value="WallColour" text="Wall Colour" apply-on-change="true" />
+    </horizontal>
+</bg>

@@ -2,7 +2,6 @@
 
 #include "HMUI/ViewController.hpp"
 #include "custom-types/shared/macros.hpp"
-#include "custom-types/shared/coroutine.hpp"
 
 #include "bsml/shared/macros.hpp"
 #include "bsml/shared/BSML/Components/Settings/SliderSetting.hpp"

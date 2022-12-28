@@ -38,6 +38,7 @@ struct IncludedAsset {
 
 namespace IncludedAssets {
 
+	DECLARE_FILE(pause_settings_bsml)
 	DECLARE_FILE(settings_bsml)
 
 }
