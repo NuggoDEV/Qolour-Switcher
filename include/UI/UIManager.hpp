@@ -2,7 +2,6 @@
 
 #include "bsml/shared/Helpers/creation.hpp"
 #include "bsml/shared/BSML.hpp"
-
 #include "HMUI/FlowCoordinator.hpp"
 #include "HMUI/ViewController_AnimationDirection.hpp"
 #include "HMUI/ViewController_AnimationType.hpp"
@@ -13,28 +12,21 @@ using namespace QuestUI;
 
 namespace QolourSwitcher::UI
 {
-    class UIManager
+    class Manager
     {
         HMUI::FlowCoordinator *parentFlow;
-        QolourSwitcher::UI::FlowCoordinators::QolourSwitcherFlowCoordinator *flow;
-        public:
-            void Init()
-            {
-                BSML::Register::RegisterMenuButton("Qolour Switcher", "Allows for full customization of the saber, bomb and wall colours!", [this]()
-                {
-                    ShowFlow(false);
-                });
-            }
+        SafePtrUnity<QolourSwitcher::UI::FlowCoordinators::QolourSwitcherFlowCoordinator> flow;
+        BSML::MenuButton *menuButton;
 
-            void ShowFlow(bool immediately)
-            {
-                if (flow == nullptr || flow->m_CachedPtr.m_value == nullptr)
-                    flow = BSML::Helpers::CreateFlowCoordinator<QolourSwitcher::UI::FlowCoordinators::QolourSwitcherFlowCoordinator *>();
-                
-                parentFlow = QuestUI::BeatSaberUI::GetMainFlowCoordinator()->YoungestChildFlowCoordinatorOrSelf();
-                parentFlow->PresentFlowCoordinator(flow, nullptr, HMUI::ViewController::AnimationDirection::Horizontal, HMUI::ViewController::AnimationType::Out, false);
-            }
+        public:
+            Manager(Manager const&) = delete;
+            Manager() = default;
+
+            void Init();
+
+            void ShowFlow(bool immediately);
+
     };
 
-    inline static UIManager manager;
+    inline static Manager manager;
 }

@@ -18,4 +18,4 @@ DECLARE_CLASS_CODEGEN(QolourSwitcher::UI::FlowCoordinators, QolourSwitcherFlowCo
     DECLARE_OVERRIDE_METHOD(void, BackButtonWasPressed, GET_FIND_METHOD(&HMUI::FlowCoordinator::BackButtonWasPressed), HMUI::ViewController* topViewController);
 )
 
-//inline QolourSwitcher::UI::FlowCoordinators::QolourSwitcherFlowCoordinator *fcInstance;
+inline QolourSwitcher::UI::FlowCoordinators::QolourSwitcherFlowCoordinator *fcInstance;
